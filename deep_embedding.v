@@ -197,11 +197,21 @@ Inductive Seq : forall (ctx : Ctx), (Env ctx) -> (Tm ctx Omega) -> Prop :=
              (var (ExtLst ctx [a;a]) None));
          (subst0 p (var (ExtLst ctx [a;a]) (Some None)))]
         (subst0 p (var (ExtLst ctx [a;a]) None))
-| product_beta {ctx a b} :
+| product_beta1 {ctx a b} :
     Seq (ExtLst ctx [a;b]) []
         (Eq _ (proj1 _ (pair _ (var (ExtLst ctx [a;b]) (Some None))
                              (var (ExtLst ctx [a;b]) None)))
             (var (ExtLst ctx [a;b]) (Some None)))
+| product_beta2 {ctx a b} :
+    Seq (ExtLst ctx [a;b]) []
+        (Eq _ (proj2 _ (pair _ (var (ExtLst ctx [a;b]) (Some None))
+                             (var (ExtLst ctx [a;b]) None)))
+            (var (ExtLst ctx [a;b]) None))
+| product_eta {ctx a b} :
+    Seq (Ext ctx (Prod a b)) []
+        (Eq _ (pair _ (proj1 _ (var (Ext ctx (Prod a b)) None))
+                    (proj2 _ (var (Ext ctx (Prod a b)) None)))
+            (var (Ext ctx (Prod a b)) None))
 | comprehension {ctx a} {p : Tm (Ext ctx a) Omega} :
     Seq (Ext ctx a) []
         (Equiv (In _ (var (Ext ctx a) None)
