@@ -2,8 +2,7 @@
 
 We encode the theory of a local set theory in Coq.
 Based on
-
-    John Bell. _Toposes and local set theories: An introduction_. 1988.
+* John Bell. _Toposes and local set theories: An introduction_. 1988.
 
 File descriptions:
 * `deep_embedding.v` : deep embedding, that is a model of the syntax in Coq
