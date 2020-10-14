@@ -4,6 +4,20 @@
 
 mem X XS :- std.mem XS X.
 
+%% type remove1 A -> list A -> list A -> prop.
+%% remove1 X [X|L] L.
+%% remove1 X [Y|L1] [Y|L2] :- not (X = Y), (remove1 X L1 L2).
+%% remove1 _ [] _ :- std.fatal-error "remove1 run out of list items".
+
+%% type remove A -> list A -> list A -> prop.
+%% remove X [X|L1] L2 :- remove X L1 L2.
+%% remove X [Y|L1] [Y|L2] :- not (X = Y), (remove X L1 L2).
+%% remove _ [] [].
+
+type sublist list A -> list A -> prop.
+sublist [] _.
+sublist [X|L1] L2 :- (mem X L2), (sublist L1 L2).
+
 
 kind tm type.
 kind ty type.
@@ -39,19 +53,18 @@ type proof pf -> tm -> (list tm) -> prop.
 type thm (list tm) -> tm -> (list tm) -> (list pf) -> prop.
 
 
-%% Can we directly eliminate all universals in H and L?
-
-
 % thm (hyps) (statement) (hilbert proof) (proof tree)
-thm H P [] [R0] :- print "*****************************************",
-				   print "***Proving:***" P H,
-				   ((proof R0 P H); print "***Failure:***" P H, fail),
+thm H P [] [R0] :- print "—————————————————————————————————————————————————————————————————————————————————————",
+				   print "***Proving:***" P,
+%				   print "From" H,
+				   (!,(proof R0 P H); print "***Failure:***" P H, fail),
 				   print "***Success:***" P " [by] " R0.
 
 thm H P [Q|L] [R0|R] :- (thm H Q L R),!,
-						print "***Proving:***" P H,
+						print "***Proving:***" P,
 						(std.append [Q|L] H L1),
-						((proof R0 P L1); print "***Failure:***" P L1, fail),
+%						print "From" L1,
+						(!,(proof R0 P L1); print "***Failure:***" P L1, fail),
 						print "***Success:***" P " [by] " R0.
 
 
@@ -78,21 +91,21 @@ vproof R P L :- print "Attempting to prove:" P "from" L,
 
 
 %% tautology
-proof (tautology) P L :- %print "Trying tautology",
-						 (mem P L), print "tautology" P.
+proof (tautology) P L :- (mem P L). %, print "tautology" P.
 
 %% unity
-proof (unity) (eq X star) _ :- print "unity" X,
+proof (unity) (eq X star) _ :- %print "unity" X,
 							   (typeof X unit).
 
 %% equality
-proof (equality S T PS) PT L :- (mem (eq S T) L),
-								(mem PS L),
-								subst P T PT,
-								% WARNING: This may run forever
-								% if no solution exists!
-								(P S = PS),
-								print "equality " S "==" T "," PS "|-" PT.
+proof (equality S T) PT L :- (mem (eq S T) L),
+							 (mem PS L),
+							 subst P T PT,
+		%					 print "trying equality " S "==" T "," PS "|-" PT,
+							 % WARNING: This may run forever
+							 % if no solution exists!
+							 (P S = PS).
+%							 print "equality " S "==" T "," PS "⊢" PT.
 
 
 %% product beta 1
@@ -109,22 +122,20 @@ proof (prod_eta U) (eq (opair (proj1 U) (proj2 U)) U) _ :- print "eta" U,
 
 %% comprehension
 proof (comprehension (compr A P)) (eq (in T (compr A P)) PT) _ :-
-	(P T = PT),
-	print "comprehension" (in T (compr A P)).
+	(P T = PT).
+%	print "comprehension" (in T (compr A P)).
 
 %% Extensionality
-proof (extensionality S T R) (eq S T) L :-
-	(pi x\ (proof R (equiv (in x S) (in x T)) L)),
-	print "extensionality" S T.
+proof (extensionality R) (eq S T) L :-
+	(pi x\ (proof R (equiv (in x S) (in x T)) L)).
+%	print "extensionality" S T.
 
 %% This should be a theorem, now that implication is primitive!?
 %% %% Equivalence
-proof (equivalence P Q R1 R2) (equiv P Q) L :-
-%	(mem (imp P Q) L),
-%	(mem (imp Q P) L),
+proof (equivalence R1 R2) (equiv P Q) L :-
 	(proof R1 Q [P|L]),
-	(proof R2 P [Q|L]),
-	print "equivalence" P Q.
+	(proof R2 P [Q|L]).
+%	print "equivalence" P Q.
 
 %% Forall
 %% This invalid example illustrates why we must
@@ -145,32 +156,37 @@ proof (equivalence P Q R1 R2) (equiv P Q) L :-
 
 %% For this reason we place the introduction rules before the elimination rules.
 
-proof (forall-intro R) (forall A P) L :- print "forall-intro" P,
+proof (forall-intro R) (forall A P) L :- %print "forall-intro" P,
 										 (pi x\ print "Subgoal:" (P x),
-										  (proof R (P x) L)).
+										  (proof (R x) (P x) L)).
 
-proof (let-intro R) (let x\ [(Q x)|(L1 x)]) L2 :- print "let-intro" L2,
-												  (pi x\ (thm L2 (Q x) (L1 x) R)).
+proof (let-intro R) (let x\ [(Q x)|(L1 x)]) L2 :- %print "let-intro" L2,
+												  (pi x\ (thm L2 (Q x) (L1 x) (R x))).
 
 
+% generalized forall
 proof (forall-elim R) PT L :- (mem (forall A P) L),
 							  (sigma x\
 							   (not (mem (P x) L);
 								(P x = forall A P))),
-							  (print "forall-elim >>" (P X) "|-" PT),
+							  %(print "forall-elim >>" (P X) "|-" PT),
 							  (proof R PT [(P X)|L]).
 
-proof (let-elim R) PT L :- (mem (let x\ (L1 x)) L),
-						   (print "let-elim >>" (L1 x) "|-" PT),
-						   (proof R PT (L1 X)).
+proof (let-elim R) PT L :- (mem (let L1) L),
+						   (sigma x\
+							(not (sublist (L1 x) L))),
+						   %(print "let-elim >>" (L1 X) "|-" PT),
+						   (std.append (L1 X) L L2),
+						   (proof R PT L2).
 
 
-proof (suppose-intro R) (suppose P [Q|L1]) L2 :- print "suppose-intro",
+% implication
+proof (suppose-intro R) (suppose P [Q|L1]) L2 :- %print "suppose-intro",
 												 (thm [P|L2] Q L1 R).
 
 proof (imp-intro) (imp P Q) L :- (mem (suppose P L1) L),
-								 (mem Q L1),
-								 print "imp-intro".
+								 (mem Q L1).
+								 %print "imp-intro".
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%    Extra definitions
@@ -207,38 +223,45 @@ proof (exists-def) (eq (exists A P)
 					(forall omega (r\ (imp (forall A (x\ (imp (P x) r))) r)))) _.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%    Natural Numbers
+%%   More definitions
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%% type nat ty.
-%% type zero tm.
-%% type succ tm -> tm.
-%% type rec ty -> (tm -> tm) -> tm -> (tm -> tm).
-%% type add tm -> tm -> tm.
+typeof (exists-unique A P) omega :- (pi x\ (typeof x A) => (typeof (P x) omega)).
 
-%% typeof zero nat.
-%% typeof (succ X) nat :- (typeof X nat).
-%% typeof (rec A F Z X) A :- (pi x\ (typeof x A) => (typeof (F x) A)),
-%% 						  (typeof Z A), (typeof X nat).
+proof (exists-unique-def) (eq (exists-unique A P)
+						   (and (exists A P)
+							(forall A x\
+							 (forall A y\
+							  (imp (and (P x) (P y))
+							   (eq x y)))))) _.
 
-%% proof (rec-zero) (eq (rec A F Z zero) Z) _.
-%% proof (rec-succ) (eq (rec A F Z (succ N)) (F (rec A F Z N))) _.
 
-%% proof (ind) (forall nat P) L :- (proof _ (P zero) L),
-%% 								(pi n\ (proof _ (P (succ n)) [(P n)|L])).
+%% type (fun S T) (power (power (prod A B))) :-
+%% 	(typeof S (power A)), (typeof T (power B)).
 
-%% proof (add-def) (eq (add X Y) (rec nat (n\ (succ n)) X Y)) _.
+%% proof (fun-def) (eq (fun S T)
+%% 				 (compr (power (prod A B)) u\
+%% 				  (forall A x\ (imp (in x S)
+%% 								(existsU B y\ (and (in y T)
+%% 											   (in (opair x y) u))))))).
 
-%% pf_add_id_right R :-
-%% 	(pi x\
-%% 	 (thm [] (eq (add x zero) x)
-%% 	  [(eq (rec nat (n\ succ n) x zero) x),
-%% 	   (eq (add x zero) (rec nat (n\ succ n) x zero))]
-%% 	  (R x))).
-%% lemma (add-id-right) (eq (add X zero) X) _.
+%% proof (lam-def) (eq (lam F)
+%% 				 (...)).
 
-%% lemma (add-comm) (eq (add X Y) (add Y X)) _.
+%% proof (app-def) (eq (app S T)
+%% 				 (...)).
 
+%% evaluate (lam S) NS :- (evaluate S NS).
+
+%% evaluate (app S T) R :- (evaluate S NS),
+%% 						(evaluate T NT),
+%% 						(subst NS NT R).
+
+
+%% proof (beta) (eq (app (lam S) T) ST) :- (subst S T ST).
+
+%% proof (reduce) S _ :- (evaluate S T),
+%% 					  (proof R T).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%       Theorems
@@ -514,12 +537,109 @@ lemma (existential_3_7_4) (exists A P) L :- (mem (P X) L).
 
 
 %% Elimination of existentials : ie. description
-%% We can only eliminate unique existentials!
-%% Otherwise we would fall into classical logic?
-%% pf_unique_existential_description R :-
+%% We can only eliminate unique existentials of power type!
+%% Whether an existential can be eliminated depends on the
+%% actual type! For example, the following eliminate:
+%% (exists unit P) |- (P star)
+%% (exists (prod A B) P) |- (exists A x\ (exists B y\ (P opair x y)))
+%% (existsU (power A) P) |- (P (compr A x\
+%%                            (exists (power A) u\ (and (in x u) (P u)))))
+%% (existsU omega P) |- (P (P tt))
+
+%% (eq (existsU A P)
+%%  (and (exists A P)
+%%   (forall A x\
+%%    (forall A y\
+%% 	(imp (and (P x) (P y))
+%% 	 (eq x y))))))
+
+type tt tm.
+type epsilon ty -> (tm -> tm) -> tm.
+type epsilon-def ty -> (tm -> tm) -> pf.
+
+proof (epsilon-def omega P) (eq (epsilon omega P) (P tt)) _.
+
+
+pf_comprehension_lemma_1 R :-
+	(pi a x p\
+	 (thm [(in x (compr a p))] (p x)
+	  [(eq (in x (compr a p)) (p x))]
+	  (R a x p))).
+lemma (comprehension_lemma_1) PT L :- (mem (in T (compr A P)) L),
+									  (PT = P T).
+
+pf_comprehension_lemma_2 R :-
+	(pi a x p\
+	 (thm [(p x)] (in x (compr a p))
+	  [(eq (p x) (in x (compr a p))),
+	   (eq (in x (compr a p)) (p x))]
+	  (R a x p))).
+lemma (comprehension_lemma_2) (in T (compr _ P)) L :- (mem (P T) L).
+
+pf_extensionality_converse R :-
+	(pi a x p q\
+	 (thm [(eq (compr a p) (compr a q))]
+	  (eq (p x) (q x))
+	  [(equiv (p x) (q x)),
+	   (imp (p x) (q x)),
+	   (imp (q x) (p x)),
+	   (suppose (p x)
+	   	[(q x),
+	   	 (in x (compr a q)),
+	   	 (in x (compr a p))
+	   	]),
+	   (suppose (q x)
+	   	[(p x),
+	   	 (in x (compr a p)),
+	   	 (in x (compr a q))
+	   	]),
+	   (eq (compr a q) (compr a p))
+	  ]
+	  (R a p q))).
+lemma (extensionality_converse) (eq PX QX) L :-
+	(mem (eq (compr A P) (compr A Q)) L), (PX = P X), (QX = Q X).
+
+
+pf_description_lemma1 R :-
+	(pi p\
+	 (thm [] (equiv p (eq (compr unit (x\ p)) (compr unit (x\ tt))))
+	  [(imp (eq (compr unit (x\ p)) (compr unit (x\ tt))) p),
+	   (suppose (eq (compr unit (x\ p)) (compr unit (x\ tt)))
+	   	[p, (eq p tt)]),
+	   (imp p (eq (compr unit (x\ p)) (compr unit (x\ tt)))),
+	   (suppose p
+		[(eq (compr unit (x\ p)) (compr unit (x\ tt))),
+		 (let x\
+		  [(eq (in x (compr unit (x\ p))) (in x (compr unit (x\ tt)))),
+		   (eq (in x (compr unit (x\ p))) tt)
+		  ]),
+		 (eq p tt),
+		]),
+	   (let x\
+		[(eq p (in x (compr unit (x\ p)))),
+		 (eq (in x (compr unit (x\ p))) p),
+		 (eq tt (in x (compr unit (x\ tt)))),
+		 (eq (in x (compr unit (x\ tt))) tt)
+		])
+	  ]
+	  (R p))).
+
+
+
+%% pf_description_3_8 R :-
 %% 	(pi a p\
-%% 	 (thm [(exists_unique a p)] (p (witness p))
-%% 	  []
+%% 	 (thm [(exists-unique a p)]
+%% 	  (p (epsilon omega p))
+%% 	  [(p (p tt)),
+%% 	   (forall omega x\
+%% 	   	(forall omega y\ (imp (and (p x) (p y)) (eq x y)))),
+%% 	   (exists omega p),
+%% 	   (and (exists omega p) (forall omega x\
+%% 	   						  (forall omega y\ (imp (and (p x) (p y)) (eq x y))))),
+%% 	   (
+%% 	   (eq (epsilon omega p) (p tt)),
+%% 	   (eq (exists-unique omega p) (and (exists omega p) (forall omega x\
+%% 	   		(forall omega y\ (imp (and (p x) (p y)) (eq x y))))))]
 %% 	  (R a p))).
 
 
@@ -532,7 +652,7 @@ lemma (existential_3_7_4) (exists A P) L :- (mem (P X) L).
 %% 	   (exists b y\ (p (witness _) y))]
 %% 	 (R a b p))).
 
-main :-  regression _,
+main :-  pf_description_3_8 R,
 		 print "Proof: " R.
 
 regression _ :- pf_eq_refl _,
@@ -560,4 +680,8 @@ regression _ :- pf_eq_refl _,
 				pf_conjunction_2 _,
 				pf_disjunction_3_6_2_i _,
 				pf_disjunction_3_6_2_ii _,
-				pf_existential_3_7_4 _.
+				pf_existential_3_7_4 _,
+				pf_comprehension_lemma_1 _,
+				pf_comprehension_lemma_2 _,
+				pf_extensionality_converse _,
+				pf_description_lemma1 _.
