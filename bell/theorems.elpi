@@ -1,0 +1,542 @@
+accumulate "theory".
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%    Basic definitions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+type equiv tm -> tm -> tm.
+type tt tm.
+type and tm -> tm -> tm.
+type imp tm -> tm -> tm.
+type forall ty -> (tm -> tm) -> tm.
+type ff tm.
+type neg tm -> tm.
+type or tm -> tm -> tm.
+type exists ty -> (tm -> tm) -> tm.
+
+typeof (equiv P Q) omega :- (typeof P omega), (typeof Q omega).
+typeof tt omega.
+typeof (and P Q) omega :- (typeof P omega), (typeof Q omega).
+typeof (imp P Q) omega :- (typeof P omega), (typeof Q omega).
+typeof (forall A P) omega :- (pi x\ (typeof x A) => (typeof (P x) omega)).
+typeof ff omega.
+typeof (exists A P) omega :- (pi x\ (typeof x A) => (typeof (P x) omega)).
+typeof (neg P) omega :- (typeof P omega).
+typeof (or P Q) omega :- (typeof P omega), (typeof Q omega).
+
+proof (equiv-def) (eq (equiv P Q) (eq P Q)) _.
+proof (tt-def) (eq tt (eq star star)) _.
+proof (and-def) (eq (and P Q) (eq (opair P Q) (opair tt tt))) _.
+proof (imp-def) (eq (imp P Q) (equiv (and P Q) P)) _.
+proof (forall-def) (eq (forall A P) (eq (compr A P) (compr A (_\ tt)))) _.
+proof (ff-def) (eq ff (forall omega (x\ x))) _.
+proof (neg-def) (eq (neg P) (imp P ff)) _.
+proof (or-def) (eq (or P Q) (forall omega (r\ (imp (and (imp P r) (imp Q r)) r)))) _.
+proof (exists-def) (eq (exists A P)
+					(forall omega (r\ (imp (forall A (x\ (imp (P x) r))) r)))) _.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%       Theorems
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Only state a lemma is its proof is validated.
+% If a theorem is of the form
+%   Hyps |- Conc,
+% the corresponding lemma should be of the form
+%   lemma Name Conc Context :- sublist Hyps Context
+proof Name Statement Context :- lemma Name Statement Context.
+
+
+pf_eq_refl R :- (pi x\ (thm [] (eq x x)
+						[(eq (proj1 (opair x x)) x)]
+						(R x))).
+lemma (eq_refl) (eq X X) _.
+
+pf_eq_sym R :- (pi x y\ (thm [(eq x y)] (eq y x)
+						 [(eq x x)]
+						 (R x y))).
+lemma (eq_sym) (eq X Y) L :- (mem (eq Y X) L).
+
+pf_eq_trans R :-
+	(pi x y z\ (thm [(eq x y), (eq y z)] (eq x z)
+				[]
+				(R x y z))).
+lemma (eq_trans) (eq X Z) L :- (mem (eq X Y) L), (mem (eq Y Z) L).
+
+
+%% Can we prove
+%% pf_equiv_def R :-
+%% 	(pi p q\
+%% 	 (thm [] (eq (imp p q) (eq (and p q) p))
+%% 	  [(imp (eq (and p q) p) (imp p q))]
+%% 	  (R p q))).
+
+%% pf_equiv_intro R :-
+%% 	(pi p q\
+%% 	 (thm [(imp p q), (imp q p)] (equiv p q)
+%% 	  [(eq (equiv p q) (eq p q))]
+%% 	  (R p q))).
+
+
+pf_equiv_eq_equiv R :-
+	(pi p q\
+	 (thm [] (equiv (equiv p q) (eq p q))
+	  [(eq (eq p q) (equiv p q)),
+	   (eq (equiv p q) (eq p q))]
+	  (R p q))).
+lemma (equiv_eq_equiv) (equiv (equiv P Q) (eq P Q)) _.
+
+pf_eq_implies_equiv R :-
+	(pi p q\
+	 (thm [(equiv p q)] (eq p q)
+	  [(eq (equiv p q) (eq p q))]
+	  (R p q))).
+lemma (eq_implies_equiv) (eq P Q) L :- (mem (equiv P Q) L).
+
+pf_equiv_implies_eq R :-
+	(pi p q\
+	 (thm [(eq p q)] (equiv p q)
+	  [(eq (eq p q) (equiv p q)),
+	   (eq (equiv p q) (eq p q))]
+	  (R p q))).
+lemma (equiv_implies_eq) (equiv P Q) L :- (mem (eq P Q) L).
+
+pf_equiv_elim1 R :-
+	(pi p q\
+	 (thm [(equiv p q), p] q
+	  [(eq p q)]
+	  (R p q))).
+lemma (equiv_elim1) Q L :- (mem (equiv P Q) L), (mem P L).
+
+pf_equiv_elim2 R :-
+	(pi p q\
+	 (thm [(equiv p q), q] p
+	  [(eq q p), (eq p q)]
+	  (R p q))).
+lemma (equiv_elim2) P L :- (mem (equiv P Q) L), (mem Q L).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Theorems from Bell
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 3.1 - Conjunction
+pf_conjunction_3_1_1 R :-
+	(pi x1 x2 y1 y2\
+	 (thm [(eq x1 x2), (eq y1 y2)] (eq (opair x1 y1) (opair x2 y2))
+	  [(eq (opair x1 y1) (opair x2 y1)),
+	   (eq (opair x1 y1) (opair x1 y1))]
+	  (R x1 x2 y1 y2))).
+lemma (conjunction_3_1_1) (eq (opair X1 Y1) (opair X2 Y2)) L :-
+	(mem (eq X1 X2) L), (mem (eq Y1 Y2) L).
+
+pf_conjunction_3_1_2_i R :-
+	(pi x1 x2 y1 y2\
+	 (thm [(eq (opair x1 y1) (opair x2 y2))] (eq x1 x2)
+	  [(eq (proj1 (opair x2 y2)) x2),
+	   (eq x1 (proj1 (opair x2 y2))),
+	   (eq (proj1 (opair x1 y1)) x1),
+	   (eq (proj1 (opair x1 y1)) (proj1 (opair x2 y2))),
+	   (eq (proj1 (opair x1 y1)) (proj1 (opair x1 y1)))]
+	  (R x1 x2 y1 y2))).
+lemma (conjunction_3_1_2_i) (eq X1 X2) L :-
+	(mem (eq (opair X1 Y1) (opair X2 Y2)) L).
+
+pf_conjunction_3_1_2_ii R :-
+	(pi x1 x2 y1 y2\
+	 (thm [(eq (opair x1 y1) (opair x2 y2))] (eq y1 y2)
+	  [(eq (proj2 (opair x2 y2)) y2),
+	   (eq y1 (proj2 (opair x2 y2))),
+	   (eq (proj2 (opair x1 y1)) y1),
+	   (eq (proj2 (opair x1 y1)) (proj2 (opair x2 y2))),
+	   (eq (proj2 (opair x1 y1)) (proj2 (opair x1 y1)))]
+	  (R x1 x2 y1 y2))).
+lemma (conjunction_3_1_2_i) (eq Y1 Y2) L :-
+	(mem (eq (opair X1 Y1) (opair X2 Y2)) L).
+
+pf_conjunction_3_1_4 R :-
+	(thm [] tt
+	 [(eq (eq star star) tt),
+	  (eq star star),
+	  (eq tt (eq star star))]
+	 R).
+lemma (conjunction_3_1_4) tt _.
+
+pf_conjunction_3_1_5_i R :-
+	(pi p\
+	 (thm [p] (eq p tt)
+	  [(eq (equiv p tt) (eq p tt)),
+	   (equiv p tt),
+	   tt]
+	  (R p))).
+lemma (conjunction_3_1_5_i) (eq P tt) L :- (mem P L).
+
+pf_conjunction_3_1_5_ii R :-
+	(pi p\
+	 (thm [(eq p tt)] p
+	  [(eq tt p), tt]
+	  (R p))).
+lemma (conjunction_3_1_5_ii) P L :- (mem (eq P tt) L).
+
+pf_conjunction_3_1_6 R :-
+	(pi p q\
+	 (thm [p, q] (and p q)
+	  [(eq (opair p q) (opair tt tt)),
+	   (eq p tt),
+	   (eq q tt),
+	   (eq (eq (opair p q) (opair tt tt)) (and p q)),
+	   (eq (and p q) (eq (opair p q) (opair tt tt)))]
+	  (R p q))).
+lemma (conjunction_3_1_6) (and P Q) L :- (mem P L), (mem Q L).
+
+pf_conjunction_3_1_7_i R :-
+	(pi p q\
+	 (thm [(and p q)] p
+	  [(eq p tt),
+	   (eq (opair p q) (opair tt tt)),
+	   (eq (and p q) (eq (opair p q) (opair tt tt)))]
+	 (R p q))).
+lemma (conjunction_3_1_7_i) P L :- (mem (and P _) L).
+
+pf_conjunction_3_1_7_ii R :-
+	(pi p q\
+	 (thm [(and p q)] q
+	  [(eq q tt),
+	   (eq (opair p q) (opair tt tt)),
+	   (eq (and p q) (eq (opair p q) (opair tt tt)))]
+	 (R p q))).
+lemma (conjunction_3_1_7_ii) Q L :- (mem (and _ Q) L).
+
+
+%% 3.2 - Implication
+pf_implication_3_2_3_ii R :-
+	(pi p q\
+	 (thm [p, (imp p q)] q
+	  [(and p q),
+	   (eq (and p q) tt),
+	   (eq (and p q) p),
+	   (equiv (and p q) p),
+	   (eq p tt),
+	   (eq (equiv (and p q) p) (eq (and p q) p)),
+	   (eq (imp p q) (equiv (and p q) p))]
+	  (R p q))).
+lemma (implication_3_2_3_ii) Q L :- (mem (imp P Q) L),
+									(mem P L).
+
+% 3.4 - Universal quantification
+pf_univ_3_4_1 R :-
+	(pi a p q\
+	 (thm [(forall a (x\ (eq (p x) (q x))))] (eq (compr a p) (compr a q))
+	  [(let x\ [(eq (in x (compr a p)) (in x (compr a q))),
+	   			(eq (in x (compr a p)) (q x)),
+	   			(eq (p x) (q x)),
+	   			(eq (q x) (in x (compr a q))),
+	   			(eq (p x) (in x (compr a p))),
+	   			(eq (in x (compr a q)) (q x)),
+	   			(eq (in x (compr a p)) (p x))])]
+	  (R a p q))).
+lemma (univ_3_4_1) (eq (compr A P) (compr A Q)) L :-
+ 	(mem (forall A (x\ (eq (P x) (Q x)))) L).
+
+pf_univ_comm R :-
+	(pi a b p\
+	 (thm [(forall a (x\ (forall b (y\ (p x y)))))]
+	  (forall b (y\ (forall a (x\ (p x y)))))
+	  []
+	  (R a b p))).
+
+pf_negation_3_5_1 R :-
+	(pi p\
+	 (thm [ff] p
+	  [(forall omega (x\ x)),
+	   (eq ff (forall omega (x\ x)))]
+	  (R p))).
+lemma (negation_3_5_1) P L :- (mem ff L).
+
+pf_conjunction_1 R :-
+	(pi p q r\
+	 (thm [(imp p r)] (imp (and p q) r)
+	  [(suppose (and p q)
+		[r,p])]
+	  (R p q r))).
+%% lemma (conjunction_1) (imp (and P Q) R) L :- (mem (imp P R) L).
+
+pf_conjunction_2 R :-
+	(pi p q r\
+	 (thm [(imp q r)] (imp (and p q) r)
+	  [(suppose (and p q)
+		[r,q])]
+	  (R p q r))).
+%% lemma (conjunction_2) (imp (and P Q) R) L :- (mem (imp Q R) L).
+
+% 3.6 - Disjunction
+pf_disjunction_3_6_2_i R :-
+	(pi p q\
+	 (thm [p] (or p q)
+	  [(forall omega (r\ (imp (and (imp p r) (imp q r)) r))),
+	   (let r\
+	  	[(suppose (and (imp p r) (imp q r))
+	  	  [r,(imp p r)])
+	  	]),
+	   (equiv (or p q) (forall omega (r\ (imp (and (imp p r) (imp q r)) r)))),
+	   (eq (or p q) (forall omega (r\ (imp (and (imp p r) (imp q r)) r))))]
+	  (R p q))).
+lemma (disjunction_3_6_2_i) (or P _) L :- (mem P L).
+
+pf_disjunction_3_6_2_ii R :-
+	(pi p q\
+	 (thm [q] (or p q)
+	  [(forall omega (r\ (imp (and (imp p r) (imp q r)) r))),
+	   (let r\
+	  	[(suppose (and (imp p r) (imp q r))
+	  	  [r,(imp q r)])
+	  	]),
+	   (equiv (or p q) (forall omega (r\ (imp (and (imp p r) (imp q r)) r)))),
+	   (eq (or p q) (forall omega (r\ (imp (and (imp p r) (imp q r)) r))))]
+	  (R p q))).
+lemma (disjunction_3_6_2_ii) (or _ Q) L :- (mem Q L).
+
+%% 3.7 - Existential quantification
+pf_existential_3_7_4 R :-
+	(pi a p x\
+	 (thm [(p x)] (exists a p)
+	  [(forall omega (r\ (imp (forall a (x\ (imp (p x) r))) r))),
+	   (let r\ [(suppose (forall a (x\ (imp (p x) r)))
+				 [r])
+			   ]),
+	   (equiv (exists a p)
+		(forall omega (r\ (imp (forall a (x\ (imp (p x) r))) r)))),
+	   (eq (exists a p) (forall omega (r\ (imp (forall a (x\ (imp (p x) r))) r))))]
+	  (R p x))).
+lemma (existential_3_7_4) (exists A P) L :- (mem (P X) L).
+
+
+%% Elimination of existentials : ie. description
+%% We can only eliminate unique existentials of power type!
+%% Whether an existential can be eliminated depends on the
+%% actual type! For example, the following eliminate:
+%% (exists unit P) |- (P star)
+%% (exists (prod A B) P) |- (exists A x\ (exists B y\ (P opair x y)))
+%% (existsU (power A) P) |- (P (compr A x\
+%%                            (exists (power A) u\ (and (in x u) (P u)))))
+%% (existsU omega P) |- (P (P tt))
+
+%% (eq (existsU A P)
+%%  (and (exists A P)
+%%   (forall A x\
+%%    (forall A y\
+%% 	(imp (and (P x) (P y))
+%% 	 (eq x y))))))
+
+type tt tm.
+type epsilon ty -> (tm -> tm) -> tm.
+type epsilon-def ty -> (tm -> tm) -> pf.
+
+proof (epsilon-def omega P) (eq (epsilon omega P) (P tt)) _.
+
+
+pf_comprehension_lemma_1 R :-
+	(pi a x p\
+	 (thm [(in x (compr a p))] (p x)
+	  [(eq (in x (compr a p)) (p x))]
+	  (R a x p))).
+lemma (comprehension_lemma_1) PT L :- (mem (in T (compr A P)) L),
+									  (PT = P T).
+
+pf_comprehension_lemma_2 R :-
+	(pi a x p\
+	 (thm [(p x)] (in x (compr a p))
+	  [(eq (p x) (in x (compr a p))),
+	   (eq (in x (compr a p)) (p x))]
+	  (R a x p))).
+lemma (comprehension_lemma_2) (in T (compr _ P)) L :- (mem (P T) L).
+
+pf_extensionality_converse R :-
+	(pi a x p q\
+	 (thm [(eq (compr a p) (compr a q))]
+	  (eq (p x) (q x))
+	  [(equiv (p x) (q x)),
+	   (imp (p x) (q x)),
+	   (imp (q x) (p x)),
+	   (suppose (p x)
+	   	[(q x),
+	   	 (in x (compr a q)),
+	   	 (in x (compr a p))
+	   	]),
+	   (suppose (q x)
+	   	[(p x),
+	   	 (in x (compr a p)),
+	   	 (in x (compr a q))
+	   	]),
+	   (eq (compr a q) (compr a p))
+	  ]
+	  (R a p q))).
+lemma (extensionality_converse) (eq PX QX) L :-
+	(mem (eq (compr A P) (compr A Q)) L), (PX = P X), (QX = Q X).
+
+
+pf_description_lemma1 R :-
+	(pi p\
+	 (thm [] (equiv p (eq (compr unit (x\ p)) (compr unit (x\ tt))))
+	  [(imp (eq (compr unit (x\ p)) (compr unit (x\ tt))) p),
+	   (suppose (eq (compr unit (x\ p)) (compr unit (x\ tt)))
+	   	[p, (eq p tt)]),
+	   (imp p (eq (compr unit (x\ p)) (compr unit (x\ tt)))),
+	   (suppose p
+		[(eq (compr unit (x\ p)) (compr unit (x\ tt))),
+		 (let x\
+		  [(eq (in x (compr unit (x\ p))) (in x (compr unit (x\ tt)))),
+		   (eq (in x (compr unit (x\ p))) tt)
+		  ]),
+		 (eq p tt),
+		]),
+	   (let x\
+		[(eq p (in x (compr unit (x\ p)))),
+		 (eq (in x (compr unit (x\ p))) p),
+		 (eq tt (in x (compr unit (x\ tt)))),
+		 (eq (in x (compr unit (x\ tt))) tt)
+		])
+	  ]
+	  (R p))).
+
+%% pf_description_3_8 R :-
+%% 	(pi p\
+%% 	 (thm [(exists omega p),
+%% 		   (forall omega u\ (forall omega v\ (imp (and (p u) (p v)) (eq u v)))),
+%% 		   (p tt), (forall omega w\ (imp (p w) w))
+%% 		  ]
+%% 	  (p (p tt))
+%% 	  [(let w\
+%% 		[(imp (p w) (p (p tt))),
+%% 		 (imp (p w) (eq w (p tt))),
+%% 		 (forall omega w\ (imp (and w (p w)) (p tt)))
+%% 	   ]
+%% 	  (R a p))).
+
+pf_description_3_9 R :-
+	(pi a p\
+	 (thm [(exists (power a) p),
+		   (forall (power a) x\ (forall (power a) y\ (imp (and (p x) (p y)) (eq x y))))]
+	  (p (compr a z\ (exists (power a) w\ (and (in z w) (p w)))))
+	  [(let u\
+		[(suppose (p u)
+		  [(p (compr a z\ (exists (power a) w\ (and (in z w) (p w))))),
+		   (eq (p u) (p (compr a z\ (exists (power a) w\ (and (in z w) (p w)))))),
+		   (eq u (compr a z\ (exists (power a) w\ (and (in z w) (p w))))),
+		   (let z\
+			[(imp (in z u) (in z (compr a z\ (exists (power a) w\ (and (in z w) (p w)))))),
+			 (suppose (in z u)
+			  [(in z (compr a z\ (exists (power a) w\ (and (in z w) (p w))))),
+			   (exists (power a) w\ (and (in z w) (p w))),
+			   (and (in z u) (p u))
+			  ]),
+			 (imp (in z (compr a z\ (exists (power a) w\ (and (in z w) (p w))))) (in z u)),
+			 (suppose (in z (compr a z\ (exists (power a) w\ (and (in z w) (p w)))))
+			  [(in z u),
+			   (forall (power a) w\ (imp (and (in z w) (p w)) (in z u))),
+			   (forall omega r\ (imp (forall (power a) w\ (imp (and (in z w) (p w)) r)) r)),
+			   (eq (exists (power a) w\ (and (in z w) (p w)))
+				(forall omega r\ (imp (forall (power a) w\ (imp (and (in z w) (p w)) r)) r))),
+			   (exists (power a) w\ (and (in z w) (p w))),
+			   (let w\
+				[(suppose (and (in z w) (p w))
+			 	  [(in z u),
+				   (in z w),
+				   (eq w u),
+				   (and (p w) (p u)),
+				   (imp (and (p w) (p u)) (eq w u)),
+				   (p w)
+				  ])
+				])
+			  ])
+			])
+		  ])
+		]),
+	   (forall omega r\ (imp (forall (power a) u\ (imp (p u) r)) r)),
+	   (eq (exists (power a) p)
+		(forall omega r\ (imp (forall (power a) u\ (imp (p u) r)) r)))]
+	  (R a p))).
+%% lemma (description_3_9) (P (compr A z\ (exists (power A) w\ (and (in z w) (P w))))) L :-
+%% 	mem (exists (power A) P) L,
+%% 	mem (forall (power A) x\ (forall (power A) y\ (imp (and (P x) (P y)) (eq x y)))) L.
+
+pf_imp_tautology R :-
+	(pi p\
+	 (thm []
+	  (imp p p)
+	  [(suppose p [p])]
+	  (R p))).
+lemma (imp_tautology) (imp P P) L.
+
+
+pf_existential_comm R :-
+	(pi a b p\
+	 (thm [(exists a x\ (exists b y\ (p x y)))]
+	  (exists b y\ (exists a x\ (p x y)))
+	  [(forall a x\ (imp (exists b y\ (p x y)) (exists b y\ (exists a x\ (p x y))))),
+	   (let x\
+	   	[(suppose (exists b y\ (p x y))
+	   	  [(exists b y\ (exists a x\ (p x y))),
+	   	   (imp (forall b y\ (imp (p x y) (exists b y\ (exists a x\ (p x y)))))
+	   		(exists b y\ (exists a x\ (p x y)))),
+	   	   (forall omega r\ (imp (forall b y\ (imp (p x y) r)) r)),
+	   	   (eq (exists b y\ (p x y))
+	   		(forall omega r\ (imp (forall b y\ (imp (p x y) r)) r)))
+	   	  ])
+	   	]),
+	   (let x\
+	   	[(forall b y\ (imp (p x y) (exists b y\ (exists a x\ (p x y))))),
+	   	 (let y\
+	   	  [(suppose (p x y)
+	   		[(exists b y\ (exists a x\ (p x y))),
+	   		 (exists a x\ (p x y))
+	   		])
+	   	  ])
+	   	]),
+	   (imp (forall a x\ (imp (exists b y\ (p x y)) (exists b y\ (exists a x\ (p x y)))))
+	   	(exists b y\ (exists a x\ (p x y)))),
+	   (forall omega r\ (imp (forall a x\ (imp (exists b y\ (p x y)) r)) r)),
+	   (eq (exists a x\ (exists b y\ (p x y)))
+	   	(forall omega r\ (imp (forall a x\ (imp (exists b y\ (p x y)) r)) r)))
+	  ]
+	  (R a b p))).
+lemma (existential_comm) (exists B y\ (exists A x\ (P x y))) L :-
+	(mem (exists A x\ (exists B y\ (P x y))) L).
+
+
+
+main :-
+		 print "Proof: " R.
+
+regression _ :- pf_eq_refl _,
+				pf_eq_sym _,
+				pf_eq_trans _,
+				pf_equiv_eq_equiv _,
+				pf_eq_implies_equiv _,
+				pf_equiv_implies_eq _,
+				pf_equiv_elim1 _,
+				pf_equiv_elim2 _,
+				pf_conjunction_3_1_1 _,
+				pf_conjunction_3_1_2_i _,
+				pf_conjunction_3_1_2_ii _,
+				pf_conjunction_3_1_4 _,
+				pf_conjunction_3_1_5_i _,
+				pf_conjunction_3_1_5_ii _,
+				pf_conjunction_3_1_6 _,
+				pf_conjunction_3_1_7_i _,
+				pf_conjunction_3_1_7_ii _,
+				pf_implication_3_2_3_ii _,
+				pf_univ_3_4_1 _,
+				pf_univ_comm _,
+				pf_negation_3_5_1 _,
+				pf_conjunction_1 _,
+				pf_conjunction_2 _,
+				pf_disjunction_3_6_2_i _,
+				pf_disjunction_3_6_2_ii _,
+				pf_existential_3_7_4 _,
+				pf_comprehension_lemma_1 _,
+				pf_comprehension_lemma_2 _,
+				pf_extensionality_converse _,
+				pf_description_lemma1 _,
+				pf_imp_tautology _,
+				pf_description_3_9 _,
+				pf_existential_comm _.
