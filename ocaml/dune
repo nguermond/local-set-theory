@@ -1,4 +1,0 @@
-(executable
- (name topos)
- (libraries elpi)
- )
