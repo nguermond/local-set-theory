@@ -1,7 +1,9 @@
-A tiny proof assistant for local set theory in ELPI.
+A tiny proof assistant for local set theory in ELPI, with Hilbert/Frege/Gentzen(?) style proofs.
 
 The theory is defined in `theory.elpi`.
+
 Theorems and proofs are defined in `theorems.elpi`.
+
 Example output is given in `saved-output.txt`.
 
 
