@@ -1,0 +1,1197 @@
+—————————————————————————————————————————————————————————————————————————————————————
+—————————————————————————————————————————————————————————————————————————————————————
+***Proving:*** [] ⊢ eq c0 c0
+***Subgoal:*** eq c0 c0
+***Subgoal:*** eq (proj1 (opair c0 c0)) c0
+***Success:*** eq (proj1 (opair c0 c0)) c0
+***Success:*** eq c0 c0
+***Done:*** [] ⊢ eq c0 c0  [by]  [equality (proj1 (opair c0 c0)) c0, prod_beta1 c0]
+—————————————————————————————————————————————————————————————————————————————————————
+—————————————————————————————————————————————————————————————————————————————————————
+***Proving:*** [eq c0 c1] ⊢ eq c1 c0
+***Subgoal:*** eq c1 c0
+***Subgoal:*** eq c0 c0
+***Success:*** eq c0 c0
+***Success:*** eq c1 c0
+***Done:*** [eq c0 c1] ⊢ eq c1 c0  [by]
+ [equality c0 c1, extensionality (equivalence tautology tautology)]
+—————————————————————————————————————————————————————————————————————————————————————
+—————————————————————————————————————————————————————————————————————————————————————
+***Proving:*** [eq c0 c1, eq c1 c2] ⊢ eq c0 c2
+***Subgoal:*** eq c0 c2
+***Success:*** eq c0 c2
+***Done:*** [eq c0 c1, eq c1 c2] ⊢ eq c0 c2  [by]  [equality c1 c2]
+—————————————————————————————————————————————————————————————————————————————————————
+—————————————————————————————————————————————————————————————————————————————————————
+***Proving:*** [] ⊢ equiv (equiv c0 c1) (eq c0 c1)
+***Subgoal:*** equiv (equiv c0 c1) (eq c0 c1)
+***Subgoal:*** eq (eq c0 c1) (equiv c0 c1)
+***Subgoal:*** eq (equiv c0 c1) (eq c0 c1)
+***Success:*** eq (equiv c0 c1) (eq c0 c1)
+***Success:*** eq (eq c0 c1) (equiv c0 c1)
+***Success:*** equiv (equiv c0 c1) (eq c0 c1)
+***Done:*** [] ⊢ equiv (equiv c0 c1) (eq c0 c1)  [by]
+ [equivalence (equality (equiv c0 c1) (eq c0 c1)) (equality (eq c0 c1) (equiv c0 c1)),
+  eq_sym, equiv-def]
+—————————————————————————————————————————————————————————————————————————————————————
+—————————————————————————————————————————————————————————————————————————————————————
+***Proving:*** [equiv c0 c1] ⊢ eq c0 c1
+***Subgoal:*** eq c0 c1
+***Subgoal:*** eq (equiv c0 c1) (eq c0 c1)
+***Success:*** eq (equiv c0 c1) (eq c0 c1)
+***Success:*** eq c0 c1
+***Done:*** [equiv c0 c1] ⊢ eq c0 c1  [by]
+ [equality (equiv c0 c1) (eq c0 c1), equiv-def]
+—————————————————————————————————————————————————————————————————————————————————————
+—————————————————————————————————————————————————————————————————————————————————————
+***Proving:*** [eq c0 c1] ⊢ equiv c0 c1
+***Subgoal:*** equiv c0 c1
+***Subgoal:*** eq (eq c0 c1) (equiv c0 c1)
+***Subgoal:*** eq (equiv c0 c1) (eq c0 c1)
+***Success:*** eq (equiv c0 c1) (eq c0 c1)
+***Success:*** eq (eq c0 c1) (equiv c0 c1)
+***Success:*** equiv c0 c1
+***Done:*** [eq c0 c1] ⊢ equiv c0 c1  [by]
+ [equality (eq c0 c1) (equiv c0 c1), eq_sym, equiv-def]
+—————————————————————————————————————————————————————————————————————————————————————
+—————————————————————————————————————————————————————————————————————————————————————
+***Proving:*** [equiv c0 c1, c0] ⊢ c1
+***Subgoal:*** c1
+***Subgoal:*** eq c0 c1
+***Success:*** eq c0 c1
+***Success:*** c1
+***Done:*** [equiv c0 c1, c0] ⊢ c1  [by]  [equality c0 c1, eq_implies_equiv]
+—————————————————————————————————————————————————————————————————————————————————————
+—————————————————————————————————————————————————————————————————————————————————————
+***Proving:*** [equiv c0 c1, c1] ⊢ c0
+***Subgoal:*** c0
+***Subgoal:*** eq c1 c0
+***Subgoal:*** eq c0 c1
+***Success:*** eq c0 c1
+***Success:*** eq c1 c0
+***Success:*** c0
+***Done:*** [equiv c0 c1, c1] ⊢ c0  [by]  [equality c1 c0, eq_sym, eq_implies_equiv]
+—————————————————————————————————————————————————————————————————————————————————————
+—————————————————————————————————————————————————————————————————————————————————————
+***Proving:*** [eq c0 c1, eq c2 c3] ⊢ eq (opair c0 c2) (opair c1 c3)
+***Subgoal:*** eq (opair c0 c2) (opair c1 c3)
+***Subgoal:*** eq (opair c0 c2) (opair c1 c2)
+***Subgoal:*** eq (opair c0 c2) (opair c0 c2)
+***Success:*** eq (opair c0 c2) (opair c0 c2)
+***Success:*** eq (opair c0 c2) (opair c1 c2)
+***Success:*** eq (opair c0 c2) (opair c1 c3)
+***Done:*** [eq c0 c1, eq c2 c3] ⊢ eq (opair c0 c2) (opair c1 c3)  [by]
+ [equality c2 c3, equality c0 c1, extensionality (equivalence tautology tautology)]
+—————————————————————————————————————————————————————————————————————————————————————
+—————————————————————————————————————————————————————————————————————————————————————
+***Proving:*** [eq (opair c0 c2) (opair c1 c3)] ⊢ eq c0 c1
+***Subgoal:*** eq c0 c1
+***Subgoal:*** eq (proj1 (opair c1 c3)) c1
+***Subgoal:*** eq c0 (proj1 (opair c1 c3))
+***Subgoal:*** eq (proj1 (opair c0 c2)) c0
+***Subgoal:*** eq (proj1 (opair c0 c2)) (proj1 (opair c1 c3))
+***Subgoal:*** eq (proj1 (opair c0 c2)) (proj1 (opair c0 c2))
+***Success:*** eq (proj1 (opair c0 c2)) (proj1 (opair c0 c2))
+***Success:*** eq (proj1 (opair c0 c2)) (proj1 (opair c1 c3))
+***Success:*** eq (proj1 (opair c0 c2)) c0
+***Success:*** eq c0 (proj1 (opair c1 c3))
+***Success:*** eq (proj1 (opair c1 c3)) c1
+***Success:*** eq c0 c1
+***Done:*** [eq (opair c0 c2) (opair c1 c3)] ⊢ eq c0 c1  [by]
+ [equality (proj1 (opair c1 c3)) c1, prod_beta1 c1, equality (proj1 (opair c0 c2)) c0,
+  prod_beta1 c0, equality (opair c0 c2) (opair c1 c3),
+  extensionality (equivalence tautology tautology)]
+—————————————————————————————————————————————————————————————————————————————————————
+—————————————————————————————————————————————————————————————————————————————————————
+***Proving:*** [eq (opair c0 c2) (opair c1 c3)] ⊢ eq c2 c3
+***Subgoal:*** eq c2 c3
+***Subgoal:*** eq (proj2 (opair c1 c3)) c3
+***Subgoal:*** eq c2 (proj2 (opair c1 c3))
+***Subgoal:*** eq (proj2 (opair c0 c2)) c2
+***Subgoal:*** eq (proj2 (opair c0 c2)) (proj2 (opair c1 c3))
+***Subgoal:*** eq (proj2 (opair c0 c2)) (proj2 (opair c0 c2))
+***Success:*** eq (proj2 (opair c0 c2)) (proj2 (opair c0 c2))
+***Success:*** eq (proj2 (opair c0 c2)) (proj2 (opair c1 c3))
+***Success:*** eq (proj2 (opair c0 c2)) c2
+***Success:*** eq c2 (proj2 (opair c1 c3))
+***Success:*** eq (proj2 (opair c1 c3)) c3
+***Success:*** eq c2 c3
+***Done:*** [eq (opair c0 c2) (opair c1 c3)] ⊢ eq c2 c3  [by]
+ [equality (proj2 (opair c1 c3)) c3, prod_beta2 c3, equality (proj2 (opair c0 c2)) c2,
+  prod_beta2 c2, equality (opair c0 c2) (opair c1 c3),
+  extensionality (equivalence tautology tautology)]
+—————————————————————————————————————————————————————————————————————————————————————
+—————————————————————————————————————————————————————————————————————————————————————
+***Proving:*** [] ⊢ tt
+***Subgoal:*** tt
+***Subgoal:*** eq (eq star star) tt
+***Subgoal:*** eq star star
+***Subgoal:*** eq tt (eq star star)
+***Success:*** eq tt (eq star star)
+***Success:*** eq star star
+***Success:*** eq (eq star star) tt
+***Success:*** tt
+***Done:*** [] ⊢ tt  [by]  [equality (eq star star) tt, eq_sym, unity, tt-def]
+—————————————————————————————————————————————————————————————————————————————————————
+—————————————————————————————————————————————————————————————————————————————————————
+***Proving:*** [c0] ⊢ eq c0 tt
+***Subgoal:*** eq c0 tt
+***Subgoal:*** eq (equiv c0 tt) (eq c0 tt)
+***Subgoal:*** equiv c0 tt
+***Subgoal:*** tt
+***Success:*** tt
+***Success:*** equiv c0 tt
+***Success:*** eq (equiv c0 tt) (eq c0 tt)
+***Success:*** eq c0 tt
+***Done:*** [c0] ⊢ eq c0 tt  [by]
+ [equality (equiv c0 tt) (eq c0 tt), equiv-def, equivalence tautology tautology,
+  conjunction_3_1_4]
+—————————————————————————————————————————————————————————————————————————————————————
+—————————————————————————————————————————————————————————————————————————————————————
+***Proving:*** [eq c0 tt] ⊢ c0
+***Subgoal:*** c0
+***Subgoal:*** eq tt c0
+***Subgoal:*** tt
+***Success:*** tt
+***Success:*** eq tt c0
+***Success:*** c0
+***Done:*** [eq c0 tt] ⊢ c0  [by]  [equality tt c0, eq_sym, conjunction_3_1_4]
+—————————————————————————————————————————————————————————————————————————————————————
+—————————————————————————————————————————————————————————————————————————————————————
+***Proving:*** [c0, c1] ⊢ and c0 c1
+***Subgoal:*** and c0 c1
+***Subgoal:*** eq (opair c0 c1) (opair tt tt)
+***Subgoal:*** eq c0 tt
+***Subgoal:*** eq c1 tt
+***Subgoal:*** eq (eq (opair c0 c1) (opair tt tt)) (and c0 c1)
+***Subgoal:*** eq (and c0 c1) (eq (opair c0 c1) (opair tt tt))
+***Success:*** eq (and c0 c1) (eq (opair c0 c1) (opair tt tt))
+***Success:*** eq (eq (opair c0 c1) (opair tt tt)) (and c0 c1)
+***Success:*** eq c1 tt
+***Success:*** eq c0 tt
+***Success:*** eq (opair c0 c1) (opair tt tt)
+***Success:*** and c0 c1
+***Done:*** [c0, c1] ⊢ and c0 c1  [by]
+ [equality (eq (opair c0 c1) (opair tt tt)) (and c0 c1), conjunction_3_1_1,
+  conjunction_3_1_5_i, conjunction_3_1_5_i, eq_sym, and-def]
+—————————————————————————————————————————————————————————————————————————————————————
+—————————————————————————————————————————————————————————————————————————————————————
+***Proving:*** [and c0 c1] ⊢ c0
+***Subgoal:*** c0
+***Subgoal:*** eq c0 tt
+***Subgoal:*** eq (opair c0 c1) (opair tt tt)
+***Subgoal:*** eq (and c0 c1) (eq (opair c0 c1) (opair tt tt))
+***Success:*** eq (and c0 c1) (eq (opair c0 c1) (opair tt tt))
+***Success:*** eq (opair c0 c1) (opair tt tt)
+***Success:*** eq c0 tt
+***Success:*** c0
+***Done:*** [and c0 c1] ⊢ c0  [by]
+ [conjunction_3_1_5_ii, conjunction_3_1_2_i,
+  equality (and c0 c1) (eq (opair c0 c1) (opair tt tt)), and-def]
+—————————————————————————————————————————————————————————————————————————————————————
+—————————————————————————————————————————————————————————————————————————————————————
+***Proving:*** [and c0 c1] ⊢ c1
+***Subgoal:*** c1
+***Subgoal:*** eq c1 tt
+***Subgoal:*** eq (opair c0 c1) (opair tt tt)
+***Subgoal:*** eq (and c0 c1) (eq (opair c0 c1) (opair tt tt))
+***Success:*** eq (and c0 c1) (eq (opair c0 c1) (opair tt tt))
+***Success:*** eq (opair c0 c1) (opair tt tt)
+***Success:*** eq c1 tt
+***Success:*** c1
+***Done:*** [and c0 c1] ⊢ c1  [by]
+ [conjunction_3_1_5_ii, conjunction_3_1_2_i,
+  equality (and c0 c1) (eq (opair c0 c1) (opair tt tt)), and-def]
+—————————————————————————————————————————————————————————————————————————————————————
+—————————————————————————————————————————————————————————————————————————————————————
+***Proving:*** [c0, imp c0 c1] ⊢ c1
+***Subgoal:*** c1
+***Subgoal:*** and c0 c1
+***Subgoal:*** eq (and c0 c1) tt
+***Subgoal:*** eq (and c0 c1) c0
+***Subgoal:*** equiv (and c0 c1) c0
+***Subgoal:*** eq c0 tt
+***Subgoal:*** eq (equiv (and c0 c1) c0) (eq (and c0 c1) c0)
+***Subgoal:*** eq (imp c0 c1) (equiv (and c0 c1) c0)
+***Success:*** eq (imp c0 c1) (equiv (and c0 c1) c0)
+***Success:*** eq (equiv (and c0 c1) c0) (eq (and c0 c1) c0)
+***Success:*** eq c0 tt
+***Success:*** equiv (and c0 c1) c0
+***Success:*** eq (and c0 c1) c0
+***Success:*** eq (and c0 c1) tt
+***Success:*** and c0 c1
+***Success:*** c1
+***Done:*** [c0, imp c0 c1] ⊢ c1  [by]
+ [conjunction_3_1_7_ii, equiv_elim2, equality c0 tt,
+  equality (equiv (and c0 c1) c0) (eq (and c0 c1) c0),
+  equality (imp c0 c1) (equiv (and c0 c1) c0), conjunction_3_1_5_i, equiv-def, imp-def]
+—————————————————————————————————————————————————————————————————————————————————————
+—————————————————————————————————————————————————————————————————————————————————————
+***Proving:*** [(forall c0 c3 \ eq (c1 c3) (c2 c3))] ⊢ eq (compr c0 c1) (compr c0 c2)
+***Subgoal:*** eq (compr c0 c1) (compr c0 c2)
+***Subgoal:***
+ let c3 \
+  [eq (in c3 (compr c0 c1)) (in c3 (compr c0 c2)), eq (in c3 (compr c0 c1)) (c2 c3),
+   eq (c1 c3) (c2 c3), eq (c2 c3) (in c3 (compr c0 c2)),
+   eq (c1 c3) (in c3 (compr c0 c1)), eq (in c3 (compr c0 c2)) (c2 c3),
+   eq (in c3 (compr c0 c1)) (c1 c3)]
+***Subgoal:*** eq (in c3 (compr c0 c1)) (in c3 (compr c0 c2))
+***Subgoal:*** eq (in c3 (compr c0 c1)) (c2 c3)
+***Subgoal:*** eq (c1 c3) (c2 c3)
+***Subgoal:*** eq (c2 c3) (in c3 (compr c0 c2))
+***Subgoal:*** eq (c1 c3) (in c3 (compr c0 c1))
+***Subgoal:*** eq (in c3 (compr c0 c2)) (c2 c3)
+***Subgoal:*** eq (in c3 (compr c0 c1)) (c1 c3)
+***Success:*** eq (in c3 (compr c0 c1)) (c1 c3)
+***Success:*** eq (in c3 (compr c0 c2)) (c2 c3)
+***Success:*** eq (c1 c3) (in c3 (compr c0 c1))
+***Success:*** eq (c2 c3) (in c3 (compr c0 c2))
+***Success:*** eq (c1 c3) (c2 c3)
+***Success:*** eq (in c3 (compr c0 c1)) (c2 c3)
+***Success:*** eq (in c3 (compr c0 c1)) (in c3 (compr c0 c2))
+***Success:***
+ let c3 \
+  [eq (in c3 (compr c0 c1)) (in c3 (compr c0 c2)), eq (in c3 (compr c0 c1)) (c2 c3),
+   eq (c1 c3) (c2 c3), eq (c2 c3) (in c3 (compr c0 c2)),
+   eq (c1 c3) (in c3 (compr c0 c1)), eq (in c3 (compr c0 c2)) (c2 c3),
+   eq (in c3 (compr c0 c1)) (c1 c3)]
+***Success:*** eq (compr c0 c1) (compr c0 c2)
+***Done:*** [(forall c0 c3 \ eq (c1 c3) (c2 c3))] ⊢ eq (compr c0 c1) (compr c0 c2)
+  [by]
+ [extensionality (forall-elim (let-elim equiv_implies_eq)),
+  (let-intro c3 \
+    [equality (c2 c3) (in c3 (compr c0 c2)), equality (c1 c3) (c2 c3),
+     forall-elim tautology, forall-elim eq_sym, forall-elim eq_sym,
+     comprehension (compr c0 c2), comprehension (compr c0 c1)])]
+—————————————————————————————————————————————————————————————————————————————————————
+—————————————————————————————————————————————————————————————————————————————————————
+***Proving:*** [(forall c0 c3 \ forall c1 c4 \ c2 c3 c4)] ⊢
+ forall c1 c3 \ forall c0 c4 \ c2 c4 c3
+***Subgoal:*** forall c1 c3 \ forall c0 c4 \ c2 c4 c3
+***Success:*** forall c1 c3 \ forall c0 c4 \ c2 c4 c3
+***Done:*** [(forall c0 c3 \ forall c1 c4 \ c2 c3 c4)] ⊢
+ forall c1 c3 \ forall c0 c4 \ c2 c4 c3  [by]
+ [(forall-intro c3 \ forall-intro c4 \ forall-elim (forall-elim tautology))]
+—————————————————————————————————————————————————————————————————————————————————————
+—————————————————————————————————————————————————————————————————————————————————————
+***Proving:*** [ff] ⊢ c0
+***Subgoal:*** c0
+***Subgoal:*** forall omega c1 \ c1
+***Subgoal:*** eq ff (forall omega c1 \ c1)
+***Success:*** eq ff (forall omega c1 \ c1)
+***Success:*** forall omega c1 \ c1
+***Success:*** c0
+***Done:*** [ff] ⊢ c0  [by]
+ [forall-elim tautology, equality ff (forall omega c1 \ c1),
+  extensionality (equivalence negation_3_5_1 negation_3_5_1)]
+—————————————————————————————————————————————————————————————————————————————————————
+—————————————————————————————————————————————————————————————————————————————————————
+***Proving:*** [imp c0 c2] ⊢ imp (and c0 c1) c2
+***Subgoal:*** imp (and c0 c1) c2
+***Subgoal:*** suppose (and c0 c1) [c2, c0]
+***Subgoal:*** c2
+***Subgoal:*** c0
+***Success:*** c0
+***Success:*** c2
+***Success:*** suppose (and c0 c1) [c2, c0]
+***Success:*** imp (and c0 c1) c2
+***Done:*** [imp c0 c2] ⊢ imp (and c0 c1) c2  [by]
+ [imp-intro, suppose-intro [implication_3_2_3_ii, conjunction_3_1_7_i]]
+—————————————————————————————————————————————————————————————————————————————————————
+—————————————————————————————————————————————————————————————————————————————————————
+***Proving:*** [imp c1 c2] ⊢ imp (and c0 c1) c2
+***Subgoal:*** imp (and c0 c1) c2
+***Subgoal:*** suppose (and c0 c1) [c2, c1]
+***Subgoal:*** c2
+***Subgoal:*** c1
+***Success:*** c1
+***Success:*** c2
+***Success:*** suppose (and c0 c1) [c2, c1]
+***Success:*** imp (and c0 c1) c2
+***Done:*** [imp c1 c2] ⊢ imp (and c0 c1) c2  [by]
+ [imp-intro, suppose-intro [implication_3_2_3_ii, conjunction_3_1_7_ii]]
+—————————————————————————————————————————————————————————————————————————————————————
+—————————————————————————————————————————————————————————————————————————————————————
+***Proving:*** [c0] ⊢ or c0 c1
+***Subgoal:*** or c0 c1
+***Subgoal:*** forall omega c2 \ imp (and (imp c0 c2) (imp c1 c2)) c2
+***Subgoal:*** let c2 \ [suppose (and (imp c0 c2) (imp c1 c2)) [c2, imp c0 c2]]
+***Subgoal:*** equiv (or c0 c1) (forall omega c2 \ imp (and (imp c0 c2) (imp c1 c2)) c2)
+***Subgoal:*** eq (or c0 c1) (forall omega c2 \ imp (and (imp c0 c2) (imp c1 c2)) c2)
+***Success:*** eq (or c0 c1) (forall omega c2 \ imp (and (imp c0 c2) (imp c1 c2)) c2)
+***Success:*** equiv (or c0 c1) (forall omega c2 \ imp (and (imp c0 c2) (imp c1 c2)) c2)
+***Subgoal:*** suppose (and (imp c0 c2) (imp c1 c2)) [c2, imp c0 c2]
+***Subgoal:*** c2
+***Subgoal:*** imp c0 c2
+***Success:*** imp c0 c2
+***Success:*** c2
+***Success:*** suppose (and (imp c0 c2) (imp c1 c2)) [c2, imp c0 c2]
+***Success:*** let c2 \ [suppose (and (imp c0 c2) (imp c1 c2)) [c2, imp c0 c2]]
+***Success:*** forall omega c2 \ imp (and (imp c0 c2) (imp c1 c2)) c2
+***Success:*** or c0 c1
+***Done:*** [c0] ⊢ or c0 c1  [by]
+ [forall-elim (let-elim equiv_elim2), (forall-intro c2 \ let-elim imp-intro),
+  (let-intro c2 \ [suppose-intro [implication_3_2_3_ii, conjunction_3_1_7_i]]),
+  equivalence
+   (equality (or c0 c1) (forall omega c2 \ imp (and (imp c0 c2) (imp c1 c2)) c2))
+   (forall-elim disjunction_3_6_2_i), or-def]
+—————————————————————————————————————————————————————————————————————————————————————
+—————————————————————————————————————————————————————————————————————————————————————
+***Proving:*** [c1] ⊢ or c0 c1
+***Subgoal:*** or c0 c1
+***Subgoal:*** forall omega c2 \ imp (and (imp c0 c2) (imp c1 c2)) c2
+***Subgoal:*** let c2 \ [suppose (and (imp c0 c2) (imp c1 c2)) [c2, imp c1 c2]]
+***Subgoal:*** equiv (or c0 c1) (forall omega c2 \ imp (and (imp c0 c2) (imp c1 c2)) c2)
+***Subgoal:*** eq (or c0 c1) (forall omega c2 \ imp (and (imp c0 c2) (imp c1 c2)) c2)
+***Success:*** eq (or c0 c1) (forall omega c2 \ imp (and (imp c0 c2) (imp c1 c2)) c2)
+***Success:*** equiv (or c0 c1) (forall omega c2 \ imp (and (imp c0 c2) (imp c1 c2)) c2)
+***Subgoal:*** suppose (and (imp c0 c2) (imp c1 c2)) [c2, imp c1 c2]
+***Subgoal:*** c2
+***Subgoal:*** imp c1 c2
+***Success:*** imp c1 c2
+***Success:*** c2
+***Success:*** suppose (and (imp c0 c2) (imp c1 c2)) [c2, imp c1 c2]
+***Success:*** let c2 \ [suppose (and (imp c0 c2) (imp c1 c2)) [c2, imp c1 c2]]
+***Success:*** forall omega c2 \ imp (and (imp c0 c2) (imp c1 c2)) c2
+***Success:*** or c0 c1
+***Done:*** [c1] ⊢ or c0 c1  [by]
+ [forall-elim (let-elim equiv_elim2), (forall-intro c2 \ let-elim imp-intro),
+  (let-intro c2 \ [suppose-intro [implication_3_2_3_ii, conjunction_3_1_7_ii]]),
+  equivalence
+   (equality (or c0 c1) (forall omega c2 \ imp (and (imp c0 c2) (imp c1 c2)) c2))
+   (forall-elim disjunction_3_6_2_ii), or-def]
+—————————————————————————————————————————————————————————————————————————————————————
+—————————————————————————————————————————————————————————————————————————————————————
+***Proving:*** [c1 c2] ⊢ exists c0 c1
+***Subgoal:*** exists c0 c1
+***Subgoal:*** forall omega c3 \ imp (forall c0 c4 \ imp (c1 c4) c3) c3
+***Subgoal:*** let c3 \ [suppose (forall c0 c4 \ imp (c1 c4) c3) [c3]]
+***Subgoal:***
+ equiv (exists c0 c1) (forall omega c3 \ imp (forall c0 c4 \ imp (c1 c4) c3) c3)
+***Subgoal:***
+ eq (exists c0 c1) (forall omega c3 \ imp (forall c0 c4 \ imp (c1 c4) c3) c3)
+***Success:***
+ eq (exists c0 c1) (forall omega c3 \ imp (forall c0 c4 \ imp (c1 c4) c3) c3)
+***Success:***
+ equiv (exists c0 c1) (forall omega c3 \ imp (forall c0 c4 \ imp (c1 c4) c3) c3)
+***Subgoal:*** suppose (forall c0 c4 \ imp (c1 c4) c3) [c3]
+***Subgoal:*** c3
+***Success:*** c3
+***Success:*** suppose (forall c0 c4 \ imp (c1 c4) c3) [c3]
+***Success:*** let c3 \ [suppose (forall c0 c4 \ imp (c1 c4) c3) [c3]]
+***Success:*** forall omega c3 \ imp (forall c0 c4 \ imp (c1 c4) c3) c3
+***Success:*** exists c0 c1
+***Done:*** [c1 c2] ⊢ exists c0 c1  [by]
+ [forall-elim (let-elim equiv_elim2), (forall-intro c3 \ let-elim imp-intro),
+  (let-intro c3 \ [suppose-intro [forall-elim implication_3_2_3_ii]]),
+  equiv_implies_eq, exists-def]
+—————————————————————————————————————————————————————————————————————————————————————
+—————————————————————————————————————————————————————————————————————————————————————
+***Proving:*** [in c1 (compr c0 c2)] ⊢ c2 c1
+***Subgoal:*** c2 c1
+***Subgoal:*** eq (in c1 (compr c0 c2)) (c2 c1)
+***Success:*** eq (in c1 (compr c0 c2)) (c2 c1)
+***Success:*** c2 c1
+***Done:*** [in c1 (compr c0 c2)] ⊢ c2 c1  [by]
+ [equality (in c1 (compr c0 c2)) (c2 c1), comprehension (compr c0 c2)]
+—————————————————————————————————————————————————————————————————————————————————————
+—————————————————————————————————————————————————————————————————————————————————————
+***Proving:*** [c2 c1] ⊢ in c1 (compr c0 c2)
+***Subgoal:*** in c1 (compr c0 c2)
+***Subgoal:*** eq (c2 c1) (in c1 (compr c0 c2))
+***Subgoal:*** eq (in c1 (compr c0 c2)) (c2 c1)
+***Success:*** eq (in c1 (compr c0 c2)) (c2 c1)
+***Success:*** eq (c2 c1) (in c1 (compr c0 c2))
+***Success:*** in c1 (compr c0 c2)
+***Done:*** [c2 c1] ⊢ in c1 (compr c0 c2)  [by]
+ [equality (c2 c1) (in c1 (compr c0 c2)), eq_sym, comprehension (compr c0 c2)]
+—————————————————————————————————————————————————————————————————————————————————————
+—————————————————————————————————————————————————————————————————————————————————————
+***Proving:*** [eq (compr c0 c2) (compr c0 c3)] ⊢ eq (c2 c1) (c3 c1)
+***Subgoal:*** eq (c2 c1) (c3 c1)
+***Subgoal:*** equiv (c2 c1) (c3 c1)
+***Subgoal:*** imp (c2 c1) (c3 c1)
+***Subgoal:*** imp (c3 c1) (c2 c1)
+***Subgoal:*** suppose (c2 c1) [c3 c1, in c1 (compr c0 c3), in c1 (compr c0 c2)]
+***Subgoal:*** suppose (c3 c1) [c2 c1, in c1 (compr c0 c2), in c1 (compr c0 c3)]
+***Subgoal:*** eq (compr c0 c3) (compr c0 c2)
+***Success:*** eq (compr c0 c3) (compr c0 c2)
+***Subgoal:*** c2 c1
+***Subgoal:*** in c1 (compr c0 c2)
+***Subgoal:*** in c1 (compr c0 c3)
+***Success:*** in c1 (compr c0 c3)
+***Success:*** in c1 (compr c0 c2)
+***Success:*** c2 c1
+***Success:*** suppose (c3 c1) [c2 c1, in c1 (compr c0 c2), in c1 (compr c0 c3)]
+***Subgoal:*** c3 c1
+***Subgoal:*** in c1 (compr c0 c3)
+***Subgoal:*** in c1 (compr c0 c2)
+***Success:*** in c1 (compr c0 c2)
+***Success:*** in c1 (compr c0 c3)
+***Success:*** c3 c1
+***Success:*** suppose (c2 c1) [c3 c1, in c1 (compr c0 c3), in c1 (compr c0 c2)]
+***Success:*** imp (c3 c1) (c2 c1)
+***Success:*** imp (c2 c1) (c3 c1)
+***Success:*** equiv (c2 c1) (c3 c1)
+***Success:*** eq (c2 c1) (c3 c1)
+***Done:*** [eq (compr c0 c2) (compr c0 c3)] ⊢ eq (c2 c1) (c3 c1)  [by]
+ [eq_implies_equiv, equivalence implication_3_2_3_ii implication_3_2_3_ii, imp-intro,
+  imp-intro,
+  suppose-intro
+   [comprehension_lemma_1, equality (compr c0 c2) (compr c0 c3), comprehension_lemma_2],
+  suppose-intro
+   [comprehension_lemma_1, equality (compr c0 c3) (compr c0 c2), comprehension_lemma_2],
+  eq_sym]
+—————————————————————————————————————————————————————————————————————————————————————
+—————————————————————————————————————————————————————————————————————————————————————
+***Proving:*** [] ⊢ equiv c0 (eq (compr unit c1 \ c0) (compr unit c1 \ tt))
+***Subgoal:*** equiv c0 (eq (compr unit c1 \ c0) (compr unit c1 \ tt))
+***Subgoal:*** imp (eq (compr unit c1 \ c0) (compr unit c1 \ tt)) c0
+***Subgoal:*** suppose (eq (compr unit c1 \ c0) (compr unit c1 \ tt)) [c0, eq c0 tt]
+***Subgoal:*** imp c0 (eq (compr unit c1 \ c0) (compr unit c1 \ tt))
+***Subgoal:***
+ suppose c0
+  [eq (compr unit c1 \ c0) (compr unit c1 \ tt),
+   (let c1 \
+     [eq (in c1 (compr unit c2 \ c0)) (in c1 (compr unit c2 \ tt)),
+      eq (in c1 (compr unit c2 \ c0)) tt]), eq c0 tt]
+***Subgoal:***
+ let c1 \
+  [eq c0 (in c1 (compr unit c2 \ c0)), eq (in c1 (compr unit c2 \ c0)) c0,
+   eq tt (in c1 (compr unit c2 \ tt)), eq (in c1 (compr unit c2 \ tt)) tt]
+***Subgoal:*** eq c0 (in c1 (compr unit c2 \ c0))
+***Subgoal:*** eq (in c1 (compr unit c2 \ c0)) c0
+***Subgoal:*** eq tt (in c1 (compr unit c2 \ tt))
+***Subgoal:*** eq (in c1 (compr unit c2 \ tt)) tt
+***Success:*** eq (in c1 (compr unit c2 \ tt)) tt
+***Success:*** eq tt (in c1 (compr unit c2 \ tt))
+***Success:*** eq (in c1 (compr unit c2 \ c0)) c0
+***Success:*** eq c0 (in c1 (compr unit c2 \ c0))
+***Success:***
+ let c1 \
+  [eq c0 (in c1 (compr unit c2 \ c0)), eq (in c1 (compr unit c2 \ c0)) c0,
+   eq tt (in c1 (compr unit c2 \ tt)), eq (in c1 (compr unit c2 \ tt)) tt]
+***Subgoal:*** eq (compr unit c1 \ c0) (compr unit c1 \ tt)
+***Subgoal:***
+ let c1 \
+  [eq (in c1 (compr unit c2 \ c0)) (in c1 (compr unit c2 \ tt)),
+   eq (in c1 (compr unit c2 \ c0)) tt]
+***Subgoal:*** eq c0 tt
+***Success:*** eq c0 tt
+***Subgoal:*** eq (in c1 (compr unit c2 \ c0)) (in c1 (compr unit c2 \ tt))
+***Subgoal:*** eq (in c1 (compr unit c2 \ c0)) tt
+***Subgoal:*** eq (compr unit c1 \ c0) (compr unit c1 \ tt)
+***Subgoal:***
+ let c1 \
+  [eq (in c1 (compr unit c2 \ c0)) (in c1 (compr unit c2 \ tt)),
+   eq (in c1 (compr unit c2 \ c0)) tt]
+***Subgoal:*** eq c0 tt
+***Success:*** eq c0 tt
+***Subgoal:*** eq (in c1 (compr unit c2 \ c0)) (in c1 (compr unit c2 \ tt))
+***Subgoal:*** eq (in c1 (compr unit c2 \ c0)) tt
+***Success:*** eq (in c1 (compr unit c2 \ c0)) tt
+***Success:*** eq (in c1 (compr unit c2 \ c0)) (in c1 (compr unit c2 \ tt))
+***Success:***
+ let c1 \
+  [eq (in c1 (compr unit c2 \ c0)) (in c1 (compr unit c2 \ tt)),
+   eq (in c1 (compr unit c2 \ c0)) tt]
+***Success:*** eq (compr unit c1 \ c0) (compr unit c1 \ tt)
+***Success:***
+ suppose c0
+  [eq (compr unit c1 \ c0) (compr unit c1 \ tt),
+   (let c1 \
+     [eq (in c1 (compr unit c2 \ c0)) (in c1 (compr unit c2 \ tt)),
+      eq (in c1 (compr unit c2 \ c0)) tt]), eq c0 tt]
+***Success:*** imp c0 (eq (compr unit c1 \ c0) (compr unit c1 \ tt))
+***Subgoal:*** c0
+***Subgoal:*** eq c0 tt
+***Success:*** eq c0 tt
+***Success:*** c0
+***Success:*** suppose (eq (compr unit c1 \ c0) (compr unit c1 \ tt)) [c0, eq c0 tt]
+***Success:*** imp (eq (compr unit c1 \ c0) (compr unit c1 \ tt)) c0
+***Success:*** equiv c0 (eq (compr unit c1 \ c0) (compr unit c1 \ tt))
+***Done:*** [] ⊢ equiv c0 (eq (compr unit c1 \ c0) (compr unit c1 \ tt))  [by]
+ [equivalence
+   (extensionality
+     (equivalence (let-elim conjunction_3_1_5_ii) (let-elim comprehension_lemma_2)))
+   (let-elim implication_3_2_3_ii), let-elim imp-intro,
+  let-elim (suppose-intro [conjunction_3_1_5_ii, extensionality_converse]),
+  let-elim imp-intro,
+  suppose-intro
+   [extensionality
+     (equivalence (equality c0 tt) (let-elim (let-elim conjunction_3_1_5_ii))),
+    (let-intro c1 \
+      [let-elim (equality tt (in c1 (compr unit c2 \ tt))),
+       let-elim (equality c0 (in c1 (compr unit c2 \ c0)))]),
+    let-elim conjunction_3_1_5_i],
+  (let-intro c1 \
+    [eq_sym, comprehension (compr unit c2 \ c0), eq_sym,
+     comprehension (compr unit c2 \ tt)])]
+—————————————————————————————————————————————————————————————————————————————————————
+—————————————————————————————————————————————————————————————————————————————————————
+***Proving:*** [] ⊢ imp c0 c0
+***Subgoal:*** imp c0 c0
+***Subgoal:*** suppose c0 [c0]
+***Subgoal:*** c0
+***Success:*** c0
+***Success:*** suppose c0 [c0]
+***Success:*** imp c0 c0
+***Done:*** [] ⊢ imp c0 c0  [by]  [imp-intro, suppose-intro [tautology]]
+—————————————————————————————————————————————————————————————————————————————————————
+—————————————————————————————————————————————————————————————————————————————————————
+***Proving:***
+ [exists (power c0) c1,
+  (forall (power c0) c2 \ forall (power c0) c3 \ imp (and (c1 c2) (c1 c3)) (eq c2 c3))]
+ ⊢ c1 (compr c0 c2 \ exists (power c0) c3 \ and (in c2 c3) (c1 c3))
+***Subgoal:*** c1 (compr c0 c2 \ exists (power c0) c3 \ and (in c2 c3) (c1 c3))
+***Subgoal:***
+ forall (power c0) c2 \
+  imp (c1 c2) (c1 (compr c0 c3 \ exists (power c0) c4 \ and (in c3 c4) (c1 c4)))
+***Subgoal:***
+ let c2 \
+  [suppose (c1 c2)
+    [c1 (compr c0 c3 \ exists (power c0) c4 \ and (in c3 c4) (c1 c4)),
+     eq (c1 c2) (c1 (compr c0 c3 \ exists (power c0) c4 \ and (in c3 c4) (c1 c4))),
+     eq (c1 c2) (c1 c2),
+     eq c2 (compr c0 c3 \ exists (power c0) c4 \ and (in c3 c4) (c1 c4)),
+     (let c3 \
+       [imp (in c3 c2)
+         (in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5))),
+        suppose (in c3 c2)
+         [in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5)),
+          (exists (power c0) c4 \ and (in c3 c4) (c1 c4)), and (in c3 c2) (c1 c2)],
+        imp (in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5)))
+         (in c3 c2),
+        suppose (in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5)))
+         [in c3 c2, (forall (power c0) c4 \ imp (and (in c3 c4) (c1 c4)) (in c3 c2)),
+          (forall omega c4 \
+            imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4),
+          eq (exists (power c0) c4 \ and (in c3 c4) (c1 c4))
+           (forall omega c4 \
+             imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4),
+          (exists (power c0) c4 \ and (in c3 c4) (c1 c4)),
+          (let c4 \
+            [suppose (and (in c3 c4) (c1 c4))
+              [in c3 c2, in c3 c4, eq c4 c2, and (c1 c4) (c1 c2),
+               imp (and (c1 c4) (c1 c2)) (eq c4 c2), c1 c4]])]])]]
+***Subgoal:*** forall omega c2 \ imp (forall (power c0) c3 \ imp (c1 c3) c2) c2
+***Subgoal:***
+ eq (exists (power c0) c1)
+  (forall omega c2 \ imp (forall (power c0) c3 \ imp (c1 c3) c2) c2)
+***Success:***
+ eq (exists (power c0) c1)
+  (forall omega c2 \ imp (forall (power c0) c3 \ imp (c1 c3) c2) c2)
+***Success:*** forall omega c2 \ imp (forall (power c0) c3 \ imp (c1 c3) c2) c2
+***Subgoal:***
+ suppose (c1 c2)
+  [c1 (compr c0 c3 \ exists (power c0) c4 \ and (in c3 c4) (c1 c4)),
+   eq (c1 c2) (c1 (compr c0 c3 \ exists (power c0) c4 \ and (in c3 c4) (c1 c4))),
+   eq (c1 c2) (c1 c2),
+   eq c2 (compr c0 c3 \ exists (power c0) c4 \ and (in c3 c4) (c1 c4)),
+   (let c3 \
+     [imp (in c3 c2)
+       (in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5))),
+      suppose (in c3 c2)
+       [in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5)),
+        (exists (power c0) c4 \ and (in c3 c4) (c1 c4)), and (in c3 c2) (c1 c2)],
+      imp (in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5)))
+       (in c3 c2),
+      suppose (in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5)))
+       [in c3 c2, (forall (power c0) c4 \ imp (and (in c3 c4) (c1 c4)) (in c3 c2)),
+        (forall omega c4 \
+          imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4),
+        eq (exists (power c0) c4 \ and (in c3 c4) (c1 c4))
+         (forall omega c4 \
+           imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4),
+        (exists (power c0) c4 \ and (in c3 c4) (c1 c4)),
+        (let c4 \
+          [suppose (and (in c3 c4) (c1 c4))
+            [in c3 c2, in c3 c4, eq c4 c2, and (c1 c4) (c1 c2),
+             imp (and (c1 c4) (c1 c2)) (eq c4 c2), c1 c4]])]])]
+***Subgoal:*** c1 (compr c0 c3 \ exists (power c0) c4 \ and (in c3 c4) (c1 c4))
+***Subgoal:***
+ eq (c1 c2) (c1 (compr c0 c3 \ exists (power c0) c4 \ and (in c3 c4) (c1 c4)))
+***Subgoal:*** eq (c1 c2) (c1 c2)
+***Subgoal:*** eq c2 (compr c0 c3 \ exists (power c0) c4 \ and (in c3 c4) (c1 c4))
+***Subgoal:***
+ let c3 \
+  [imp (in c3 c2) (in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5))),
+   suppose (in c3 c2)
+    [in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5)),
+     (exists (power c0) c4 \ and (in c3 c4) (c1 c4)), and (in c3 c2) (c1 c2)],
+   imp (in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5))) (in c3 c2),
+   suppose (in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5)))
+    [in c3 c2, (forall (power c0) c4 \ imp (and (in c3 c4) (c1 c4)) (in c3 c2)),
+     (forall omega c4 \ imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4),
+     eq (exists (power c0) c4 \ and (in c3 c4) (c1 c4))
+      (forall omega c4 \ imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4),
+     (exists (power c0) c4 \ and (in c3 c4) (c1 c4)),
+     (let c4 \
+       [suppose (and (in c3 c4) (c1 c4))
+         [in c3 c2, in c3 c4, eq c4 c2, and (c1 c4) (c1 c2),
+          imp (and (c1 c4) (c1 c2)) (eq c4 c2), c1 c4]])]]
+***Subgoal:***
+ imp (in c3 c2) (in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5)))
+***Subgoal:***
+ suppose (in c3 c2)
+  [in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5)),
+   (exists (power c0) c4 \ and (in c3 c4) (c1 c4)), and (in c3 c2) (c1 c2)]
+***Subgoal:***
+ imp (in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5))) (in c3 c2)
+***Subgoal:***
+ suppose (in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5)))
+  [in c3 c2, (forall (power c0) c4 \ imp (and (in c3 c4) (c1 c4)) (in c3 c2)),
+   (forall omega c4 \ imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4),
+   eq (exists (power c0) c4 \ and (in c3 c4) (c1 c4))
+    (forall omega c4 \ imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4),
+   (exists (power c0) c4 \ and (in c3 c4) (c1 c4)),
+   (let c4 \
+     [suppose (and (in c3 c4) (c1 c4))
+       [in c3 c2, in c3 c4, eq c4 c2, and (c1 c4) (c1 c2),
+        imp (and (c1 c4) (c1 c2)) (eq c4 c2), c1 c4]])]
+***Subgoal:*** in c3 c2
+***Subgoal:*** forall (power c0) c4 \ imp (and (in c3 c4) (c1 c4)) (in c3 c2)
+***Subgoal:***
+ forall omega c4 \ imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4
+***Subgoal:***
+ eq (exists (power c0) c4 \ and (in c3 c4) (c1 c4))
+  (forall omega c4 \ imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4)
+***Subgoal:*** exists (power c0) c4 \ and (in c3 c4) (c1 c4)
+***Subgoal:***
+ let c4 \
+  [suppose (and (in c3 c4) (c1 c4))
+    [in c3 c2, in c3 c4, eq c4 c2, and (c1 c4) (c1 c2),
+     imp (and (c1 c4) (c1 c2)) (eq c4 c2), c1 c4]]
+***Subgoal:***
+ suppose (and (in c3 c4) (c1 c4))
+  [in c3 c2, in c3 c4, eq c4 c2, and (c1 c4) (c1 c2),
+   imp (and (c1 c4) (c1 c2)) (eq c4 c2), c1 c4]
+***Subgoal:*** in c3 c2
+***Subgoal:*** in c3 c4
+***Subgoal:*** eq c4 c2
+***Subgoal:*** and (c1 c4) (c1 c2)
+***Subgoal:*** imp (and (c1 c4) (c1 c2)) (eq c4 c2)
+***Subgoal:*** c1 c4
+***Success:*** c1 c4
+***Subgoal:*** c1 (compr c0 c3 \ exists (power c0) c4 \ and (in c3 c4) (c1 c4))
+***Subgoal:***
+ eq (c1 c2) (c1 (compr c0 c3 \ exists (power c0) c4 \ and (in c3 c4) (c1 c4)))
+***Subgoal:*** eq (c1 c2) (c1 c2)
+***Subgoal:*** eq c2 (compr c0 c3 \ exists (power c0) c4 \ and (in c3 c4) (c1 c4))
+***Subgoal:***
+ let c3 \
+  [imp (in c3 c2) (in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5))),
+   suppose (in c3 c2)
+    [in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5)),
+     (exists (power c0) c4 \ and (in c3 c4) (c1 c4)), and (in c3 c2) (c1 c2)],
+   imp (in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5))) (in c3 c2),
+   suppose (in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5)))
+    [in c3 c2, (forall (power c0) c4 \ imp (and (in c3 c4) (c1 c4)) (in c3 c2)),
+     (forall omega c4 \ imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4),
+     eq (exists (power c0) c4 \ and (in c3 c4) (c1 c4))
+      (forall omega c4 \ imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4),
+     (exists (power c0) c4 \ and (in c3 c4) (c1 c4)),
+     (let c4 \
+       [suppose (and (in c3 c4) (c1 c4))
+         [in c3 c2, in c3 c4, eq c4 c2, and (c1 c4) (c1 c2),
+          imp (and (c1 c4) (c1 c2)) (eq c4 c2), c1 c4]])]]
+***Subgoal:***
+ imp (in c3 c2) (in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5)))
+***Subgoal:***
+ suppose (in c3 c2)
+  [in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5)),
+   (exists (power c0) c4 \ and (in c3 c4) (c1 c4)), and (in c3 c2) (c1 c2)]
+***Subgoal:***
+ imp (in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5))) (in c3 c2)
+***Subgoal:***
+ suppose (in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5)))
+  [in c3 c2, (forall (power c0) c4 \ imp (and (in c3 c4) (c1 c4)) (in c3 c2)),
+   (forall omega c4 \ imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4),
+   eq (exists (power c0) c4 \ and (in c3 c4) (c1 c4))
+    (forall omega c4 \ imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4),
+   (exists (power c0) c4 \ and (in c3 c4) (c1 c4)),
+   (let c4 \
+     [suppose (and (in c3 c4) (c1 c4))
+       [in c3 c2, in c3 c4, eq c4 c2, and (c1 c4) (c1 c2),
+        imp (and (c1 c4) (c1 c2)) (eq c4 c2), c1 c4]])]
+***Subgoal:*** in c3 c2
+***Subgoal:*** forall (power c0) c4 \ imp (and (in c3 c4) (c1 c4)) (in c3 c2)
+***Subgoal:***
+ forall omega c4 \ imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4
+***Subgoal:***
+ eq (exists (power c0) c4 \ and (in c3 c4) (c1 c4))
+  (forall omega c4 \ imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4)
+***Subgoal:*** exists (power c0) c4 \ and (in c3 c4) (c1 c4)
+***Subgoal:***
+ let c4 \
+  [suppose (and (in c3 c4) (c1 c4))
+    [in c3 c2, in c3 c4, eq c4 c2, and (c1 c4) (c1 c2),
+     imp (and (c1 c4) (c1 c2)) (eq c4 c2), c1 c4]]
+***Subgoal:***
+ suppose (and (in c3 c4) (c1 c4))
+  [in c3 c2, in c3 c4, eq c4 c2, and (c1 c4) (c1 c2),
+   imp (and (c1 c4) (c1 c2)) (eq c4 c2), c1 c4]
+***Subgoal:*** in c3 c2
+***Subgoal:*** in c3 c4
+***Subgoal:*** eq c4 c2
+***Subgoal:*** and (c1 c4) (c1 c2)
+***Subgoal:*** imp (and (c1 c4) (c1 c2)) (eq c4 c2)
+***Subgoal:*** c1 c4
+***Success:*** c1 c4
+***Subgoal:*** in c3 c2
+***Subgoal:*** forall (power c0) c4 \ imp (and (in c3 c4) (c1 c4)) (in c3 c2)
+***Subgoal:***
+ forall omega c4 \ imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4
+***Subgoal:***
+ eq (exists (power c0) c4 \ and (in c3 c4) (c1 c4))
+  (forall omega c4 \ imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4)
+***Subgoal:*** exists (power c0) c4 \ and (in c3 c4) (c1 c4)
+***Subgoal:***
+ let c4 \
+  [suppose (and (in c3 c4) (c1 c4))
+    [in c3 c2, in c3 c4, eq c4 c2, and (c1 c4) (c1 c2),
+     imp (and (c1 c4) (c1 c2)) (eq c4 c2), c1 c4]]
+***Subgoal:***
+ suppose (and (in c3 c4) (c1 c4))
+  [in c3 c2, in c3 c4, eq c4 c2, and (c1 c4) (c1 c2),
+   imp (and (c1 c4) (c1 c2)) (eq c4 c2), c1 c4]
+***Subgoal:*** in c3 c2
+***Subgoal:*** in c3 c4
+***Subgoal:*** eq c4 c2
+***Subgoal:*** and (c1 c4) (c1 c2)
+***Subgoal:*** imp (and (c1 c4) (c1 c2)) (eq c4 c2)
+***Subgoal:*** c1 c4
+***Success:*** c1 c4
+***Subgoal:*** in c3 c2
+***Subgoal:*** in c3 c4
+***Subgoal:*** eq c4 c2
+***Subgoal:*** and (c1 c4) (c1 c2)
+***Subgoal:*** imp (and (c1 c4) (c1 c2)) (eq c4 c2)
+***Subgoal:*** c1 c4
+***Success:*** c1 c4
+***Subgoal:*** c1 (compr c0 c3 \ exists (power c0) c4 \ and (in c3 c4) (c1 c4))
+***Subgoal:***
+ eq (c1 c2) (c1 (compr c0 c3 \ exists (power c0) c4 \ and (in c3 c4) (c1 c4)))
+***Subgoal:*** eq (c1 c2) (c1 c2)
+***Subgoal:*** eq c2 (compr c0 c3 \ exists (power c0) c4 \ and (in c3 c4) (c1 c4))
+***Subgoal:***
+ let c3 \
+  [imp (in c3 c2) (in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5))),
+   suppose (in c3 c2)
+    [in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5)),
+     (exists (power c0) c4 \ and (in c3 c4) (c1 c4)), and (in c3 c2) (c1 c2)],
+   imp (in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5))) (in c3 c2),
+   suppose (in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5)))
+    [in c3 c2, (forall (power c0) c4 \ imp (and (in c3 c4) (c1 c4)) (in c3 c2)),
+     (forall omega c4 \ imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4),
+     eq (exists (power c0) c4 \ and (in c3 c4) (c1 c4))
+      (forall omega c4 \ imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4),
+     (exists (power c0) c4 \ and (in c3 c4) (c1 c4)),
+     (let c4 \
+       [suppose (and (in c3 c4) (c1 c4))
+         [in c3 c2, in c3 c4, eq c4 c2, and (c1 c4) (c1 c2),
+          imp (and (c1 c4) (c1 c2)) (eq c4 c2), c1 c4]])]]
+***Subgoal:***
+ imp (in c3 c2) (in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5)))
+***Subgoal:***
+ suppose (in c3 c2)
+  [in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5)),
+   (exists (power c0) c4 \ and (in c3 c4) (c1 c4)), and (in c3 c2) (c1 c2)]
+***Subgoal:***
+ imp (in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5))) (in c3 c2)
+***Subgoal:***
+ suppose (in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5)))
+  [in c3 c2, (forall (power c0) c4 \ imp (and (in c3 c4) (c1 c4)) (in c3 c2)),
+   (forall omega c4 \ imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4),
+   eq (exists (power c0) c4 \ and (in c3 c4) (c1 c4))
+    (forall omega c4 \ imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4),
+   (exists (power c0) c4 \ and (in c3 c4) (c1 c4)),
+   (let c4 \
+     [suppose (and (in c3 c4) (c1 c4))
+       [in c3 c2, in c3 c4, eq c4 c2, and (c1 c4) (c1 c2),
+        imp (and (c1 c4) (c1 c2)) (eq c4 c2), c1 c4]])]
+***Subgoal:*** in c3 c2
+***Subgoal:*** forall (power c0) c4 \ imp (and (in c3 c4) (c1 c4)) (in c3 c2)
+***Subgoal:***
+ forall omega c4 \ imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4
+***Subgoal:***
+ eq (exists (power c0) c4 \ and (in c3 c4) (c1 c4))
+  (forall omega c4 \ imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4)
+***Subgoal:*** exists (power c0) c4 \ and (in c3 c4) (c1 c4)
+***Subgoal:***
+ let c4 \
+  [suppose (and (in c3 c4) (c1 c4))
+    [in c3 c2, in c3 c4, eq c4 c2, and (c1 c4) (c1 c2),
+     imp (and (c1 c4) (c1 c2)) (eq c4 c2), c1 c4]]
+***Subgoal:***
+ suppose (and (in c3 c4) (c1 c4))
+  [in c3 c2, in c3 c4, eq c4 c2, and (c1 c4) (c1 c2),
+   imp (and (c1 c4) (c1 c2)) (eq c4 c2), c1 c4]
+***Subgoal:*** in c3 c2
+***Subgoal:*** in c3 c4
+***Subgoal:*** eq c4 c2
+***Subgoal:*** and (c1 c4) (c1 c2)
+***Subgoal:*** imp (and (c1 c4) (c1 c2)) (eq c4 c2)
+***Subgoal:*** c1 c4
+***Success:*** c1 c4
+***Subgoal:*** in c3 c2
+***Subgoal:*** forall (power c0) c4 \ imp (and (in c3 c4) (c1 c4)) (in c3 c2)
+***Subgoal:***
+ forall omega c4 \ imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4
+***Subgoal:***
+ eq (exists (power c0) c4 \ and (in c3 c4) (c1 c4))
+  (forall omega c4 \ imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4)
+***Subgoal:*** exists (power c0) c4 \ and (in c3 c4) (c1 c4)
+***Subgoal:***
+ let c4 \
+  [suppose (and (in c3 c4) (c1 c4))
+    [in c3 c2, in c3 c4, eq c4 c2, and (c1 c4) (c1 c2),
+     imp (and (c1 c4) (c1 c2)) (eq c4 c2), c1 c4]]
+***Subgoal:***
+ suppose (and (in c3 c4) (c1 c4))
+  [in c3 c2, in c3 c4, eq c4 c2, and (c1 c4) (c1 c2),
+   imp (and (c1 c4) (c1 c2)) (eq c4 c2), c1 c4]
+***Subgoal:*** in c3 c2
+***Subgoal:*** in c3 c4
+***Subgoal:*** eq c4 c2
+***Subgoal:*** and (c1 c4) (c1 c2)
+***Subgoal:*** imp (and (c1 c4) (c1 c2)) (eq c4 c2)
+***Subgoal:*** c1 c4
+***Success:*** c1 c4
+***Subgoal:*** in c3 c2
+***Subgoal:*** in c3 c4
+***Subgoal:*** eq c4 c2
+***Subgoal:*** and (c1 c4) (c1 c2)
+***Subgoal:*** imp (and (c1 c4) (c1 c2)) (eq c4 c2)
+***Subgoal:*** c1 c4
+***Success:*** c1 c4
+***Subgoal:*** in c3 c2
+***Subgoal:*** forall (power c0) c4 \ imp (and (in c3 c4) (c1 c4)) (in c3 c2)
+***Subgoal:***
+ forall omega c4 \ imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4
+***Subgoal:***
+ eq (exists (power c0) c4 \ and (in c3 c4) (c1 c4))
+  (forall omega c4 \ imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4)
+***Subgoal:*** exists (power c0) c4 \ and (in c3 c4) (c1 c4)
+***Subgoal:***
+ let c4 \
+  [suppose (and (in c3 c4) (c1 c4))
+    [in c3 c2, in c3 c4, eq c4 c2, and (c1 c4) (c1 c2),
+     imp (and (c1 c4) (c1 c2)) (eq c4 c2), c1 c4]]
+***Subgoal:***
+ suppose (and (in c3 c4) (c1 c4))
+  [in c3 c2, in c3 c4, eq c4 c2, and (c1 c4) (c1 c2),
+   imp (and (c1 c4) (c1 c2)) (eq c4 c2), c1 c4]
+***Subgoal:*** in c3 c2
+***Subgoal:*** in c3 c4
+***Subgoal:*** eq c4 c2
+***Subgoal:*** and (c1 c4) (c1 c2)
+***Subgoal:*** imp (and (c1 c4) (c1 c2)) (eq c4 c2)
+***Subgoal:*** c1 c4
+***Success:*** c1 c4
+***Success:*** imp (and (c1 c4) (c1 c2)) (eq c4 c2)
+***Success:*** and (c1 c4) (c1 c2)
+***Success:*** eq c4 c2
+***Success:*** in c3 c4
+***Success:*** in c3 c2
+***Success:***
+ suppose (and (in c3 c4) (c1 c4))
+  [in c3 c2, in c3 c4, eq c4 c2, and (c1 c4) (c1 c2),
+   imp (and (c1 c4) (c1 c2)) (eq c4 c2), c1 c4]
+***Success:***
+ let c4 \
+  [suppose (and (in c3 c4) (c1 c4))
+    [in c3 c2, in c3 c4, eq c4 c2, and (c1 c4) (c1 c2),
+     imp (and (c1 c4) (c1 c2)) (eq c4 c2), c1 c4]]
+***Success:*** exists (power c0) c4 \ and (in c3 c4) (c1 c4)
+***Success:***
+ eq (exists (power c0) c4 \ and (in c3 c4) (c1 c4))
+  (forall omega c4 \ imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4)
+***Success:***
+ forall omega c4 \ imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4
+***Success:*** forall (power c0) c4 \ imp (and (in c3 c4) (c1 c4)) (in c3 c2)
+***Success:*** in c3 c2
+***Success:***
+ suppose (in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5)))
+  [in c3 c2, (forall (power c0) c4 \ imp (and (in c3 c4) (c1 c4)) (in c3 c2)),
+   (forall omega c4 \ imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4),
+   eq (exists (power c0) c4 \ and (in c3 c4) (c1 c4))
+    (forall omega c4 \ imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4),
+   (exists (power c0) c4 \ and (in c3 c4) (c1 c4)),
+   (let c4 \
+     [suppose (and (in c3 c4) (c1 c4))
+       [in c3 c2, in c3 c4, eq c4 c2, and (c1 c4) (c1 c2),
+        imp (and (c1 c4) (c1 c2)) (eq c4 c2), c1 c4]])]
+***Success:***
+ imp (in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5))) (in c3 c2)
+***Subgoal:*** in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5))
+***Subgoal:*** exists (power c0) c4 \ and (in c3 c4) (c1 c4)
+***Subgoal:*** and (in c3 c2) (c1 c2)
+***Success:*** and (in c3 c2) (c1 c2)
+***Success:*** exists (power c0) c4 \ and (in c3 c4) (c1 c4)
+***Success:*** in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5))
+***Success:***
+ suppose (in c3 c2)
+  [in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5)),
+   (exists (power c0) c4 \ and (in c3 c4) (c1 c4)), and (in c3 c2) (c1 c2)]
+***Success:***
+ imp (in c3 c2) (in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5)))
+***Success:***
+ let c3 \
+  [imp (in c3 c2) (in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5))),
+   suppose (in c3 c2)
+    [in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5)),
+     (exists (power c0) c4 \ and (in c3 c4) (c1 c4)), and (in c3 c2) (c1 c2)],
+   imp (in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5))) (in c3 c2),
+   suppose (in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5)))
+    [in c3 c2, (forall (power c0) c4 \ imp (and (in c3 c4) (c1 c4)) (in c3 c2)),
+     (forall omega c4 \ imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4),
+     eq (exists (power c0) c4 \ and (in c3 c4) (c1 c4))
+      (forall omega c4 \ imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4),
+     (exists (power c0) c4 \ and (in c3 c4) (c1 c4)),
+     (let c4 \
+       [suppose (and (in c3 c4) (c1 c4))
+         [in c3 c2, in c3 c4, eq c4 c2, and (c1 c4) (c1 c2),
+          imp (and (c1 c4) (c1 c2)) (eq c4 c2), c1 c4]])]]
+***Success:*** eq c2 (compr c0 c3 \ exists (power c0) c4 \ and (in c3 c4) (c1 c4))
+***Success:*** eq (c1 c2) (c1 c2)
+***Success:***
+ eq (c1 c2) (c1 (compr c0 c3 \ exists (power c0) c4 \ and (in c3 c4) (c1 c4)))
+***Success:*** c1 (compr c0 c3 \ exists (power c0) c4 \ and (in c3 c4) (c1 c4))
+***Success:***
+ suppose (c1 c2)
+  [c1 (compr c0 c3 \ exists (power c0) c4 \ and (in c3 c4) (c1 c4)),
+   eq (c1 c2) (c1 (compr c0 c3 \ exists (power c0) c4 \ and (in c3 c4) (c1 c4))),
+   eq (c1 c2) (c1 c2),
+   eq c2 (compr c0 c3 \ exists (power c0) c4 \ and (in c3 c4) (c1 c4)),
+   (let c3 \
+     [imp (in c3 c2)
+       (in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5))),
+      suppose (in c3 c2)
+       [in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5)),
+        (exists (power c0) c4 \ and (in c3 c4) (c1 c4)), and (in c3 c2) (c1 c2)],
+      imp (in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5)))
+       (in c3 c2),
+      suppose (in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5)))
+       [in c3 c2, (forall (power c0) c4 \ imp (and (in c3 c4) (c1 c4)) (in c3 c2)),
+        (forall omega c4 \
+          imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4),
+        eq (exists (power c0) c4 \ and (in c3 c4) (c1 c4))
+         (forall omega c4 \
+           imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4),
+        (exists (power c0) c4 \ and (in c3 c4) (c1 c4)),
+        (let c4 \
+          [suppose (and (in c3 c4) (c1 c4))
+            [in c3 c2, in c3 c4, eq c4 c2, and (c1 c4) (c1 c2),
+             imp (and (c1 c4) (c1 c2)) (eq c4 c2), c1 c4]])]])]
+***Success:***
+ let c2 \
+  [suppose (c1 c2)
+    [c1 (compr c0 c3 \ exists (power c0) c4 \ and (in c3 c4) (c1 c4)),
+     eq (c1 c2) (c1 (compr c0 c3 \ exists (power c0) c4 \ and (in c3 c4) (c1 c4))),
+     eq (c1 c2) (c1 c2),
+     eq c2 (compr c0 c3 \ exists (power c0) c4 \ and (in c3 c4) (c1 c4)),
+     (let c3 \
+       [imp (in c3 c2)
+         (in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5))),
+        suppose (in c3 c2)
+         [in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5)),
+          (exists (power c0) c4 \ and (in c3 c4) (c1 c4)), and (in c3 c2) (c1 c2)],
+        imp (in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5)))
+         (in c3 c2),
+        suppose (in c3 (compr c0 c4 \ exists (power c0) c5 \ and (in c4 c5) (c1 c5)))
+         [in c3 c2, (forall (power c0) c4 \ imp (and (in c3 c4) (c1 c4)) (in c3 c2)),
+          (forall omega c4 \
+            imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4),
+          eq (exists (power c0) c4 \ and (in c3 c4) (c1 c4))
+           (forall omega c4 \
+             imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4),
+          (exists (power c0) c4 \ and (in c3 c4) (c1 c4)),
+          (let c4 \
+            [suppose (and (in c3 c4) (c1 c4))
+              [in c3 c2, in c3 c4, eq c4 c2, and (c1 c4) (c1 c2),
+               imp (and (c1 c4) (c1 c2)) (eq c4 c2), c1 c4]])]])]]
+***Success:***
+ forall (power c0) c2 \
+  imp (c1 c2) (c1 (compr c0 c3 \ exists (power c0) c4 \ and (in c3 c4) (c1 c4)))
+***Success:*** c1 (compr c0 c2 \ exists (power c0) c3 \ and (in c2 c3) (c1 c3))
+***Done:***
+ [exists (power c0) c1,
+  (forall (power c0) c2 \ forall (power c0) c3 \ imp (and (c1 c2) (c1 c3)) (eq c2 c3))]
+ ⊢ c1 (compr c0 c2 \ exists (power c0) c3 \ and (in c2 c3) (c1 c3))  [by]
+ [forall-elim (forall-elim (forall-elim (forall-elim (let-elim implication_3_2_3_ii)))),
+  (forall-intro c2 \ forall-elim (forall-elim (forall-elim (let-elim imp-intro)))),
+  (let-intro c2 \
+    [forall-elim
+      (suppose-intro
+        [equality (c1 c2)
+          (c1 (compr c0 c3 \ exists (power c0) c4 \ and (in c3 c4) (c1 c4))),
+         equality c2 (compr c0 c3 \ exists (power c0) c4 \ and (in c3 c4) (c1 c4)),
+         extensionality (equivalence tautology tautology),
+         extensionality
+          (equivalence (forall-elim (forall-elim (let-elim implication_3_2_3_ii)))
+            (forall-elim (forall-elim (let-elim implication_3_2_3_ii)))),
+         (let-intro c3 \
+           [forall-elim (forall-elim imp-intro),
+            forall-elim
+             (forall-elim
+               (suppose-intro
+                 [comprehension_lemma_2, existential_3_7_4, conjunction_3_1_6])),
+            forall-elim (forall-elim imp-intro),
+            suppose-intro
+             [forall-elim
+               (forall-elim (forall-elim (forall-elim (let-elim implication_3_2_3_ii)))),
+              (forall-intro c4 \
+                forall-elim (forall-elim (forall-elim (let-elim imp-intro)))),
+              equality (exists (power c0) c4 \ and (in c3 c4) (c1 c4))
+               (forall omega c4 \
+                 imp (forall (power c0) c5 \ imp (and (in c3 c5) (c1 c5)) c4) c4),
+              forall-elim (forall-elim (let-elim exists-def)),
+              forall-elim (forall-elim (let-elim comprehension_lemma_1)),
+              (let-intro c4 \
+                [forall-elim
+                  (forall-elim
+                    (suppose-intro
+                      [equality c4 c2, conjunction_3_1_7_i, implication_3_2_3_ii,
+                       conjunction_3_1_6, tautology, conjunction_3_1_7_ii]))])]])])]),
+  equality (exists (power c0) c1)
+   (forall omega c2 \ imp (forall (power c0) c3 \ imp (c1 c3) c2) c2),
+  forall-elim (forall-elim exists-def)]
+—————————————————————————————————————————————————————————————————————————————————————
+—————————————————————————————————————————————————————————————————————————————————————
+***Proving:*** [(exists c0 c3 \ exists c1 c4 \ c2 c3 c4)] ⊢
+ exists c1 c3 \ exists c0 c4 \ c2 c4 c3
+***Subgoal:*** exists c1 c3 \ exists c0 c4 \ c2 c4 c3
+***Subgoal:***
+ forall c0 c3 \ imp (exists c1 c4 \ c2 c3 c4) (exists c1 c4 \ exists c0 c5 \ c2 c5 c4)
+***Subgoal:***
+ let c3 \
+  [suppose (exists c1 c4 \ c2 c3 c4)
+    [(exists c1 c4 \ exists c0 c5 \ c2 c5 c4),
+     imp (forall c1 c4 \ imp (c2 c3 c4) (exists c1 c5 \ exists c0 c6 \ c2 c6 c5))
+      (exists c1 c4 \ exists c0 c5 \ c2 c5 c4),
+     (forall omega c4 \ imp (forall c1 c5 \ imp (c2 c3 c5) c4) c4),
+     eq (exists c1 c4 \ c2 c3 c4)
+      (forall omega c4 \ imp (forall c1 c5 \ imp (c2 c3 c5) c4) c4)]]
+***Subgoal:***
+ let c3 \
+  [(forall c1 c4 \ imp (c2 c3 c4) (exists c1 c5 \ exists c0 c6 \ c2 c6 c5)),
+   (let c4 \
+     [suppose (c2 c3 c4)
+       [(exists c1 c5 \ exists c0 c6 \ c2 c6 c5), (exists c0 c5 \ c2 c5 c4)]])]
+***Subgoal:***
+ imp
+  (forall c0 c3 \ imp (exists c1 c4 \ c2 c3 c4) (exists c1 c4 \ exists c0 c5 \ c2 c5 c4))
+  (exists c1 c3 \ exists c0 c4 \ c2 c4 c3)
+***Subgoal:***
+ forall omega c3 \ imp (forall c0 c4 \ imp (exists c1 c5 \ c2 c4 c5) c3) c3
+***Subgoal:***
+ eq (exists c0 c3 \ exists c1 c4 \ c2 c3 c4)
+  (forall omega c3 \ imp (forall c0 c4 \ imp (exists c1 c5 \ c2 c4 c5) c3) c3)
+***Success:***
+ eq (exists c0 c3 \ exists c1 c4 \ c2 c3 c4)
+  (forall omega c3 \ imp (forall c0 c4 \ imp (exists c1 c5 \ c2 c4 c5) c3) c3)
+***Success:***
+ forall omega c3 \ imp (forall c0 c4 \ imp (exists c1 c5 \ c2 c4 c5) c3) c3
+***Success:***
+ imp
+  (forall c0 c3 \ imp (exists c1 c4 \ c2 c3 c4) (exists c1 c4 \ exists c0 c5 \ c2 c5 c4))
+  (exists c1 c3 \ exists c0 c4 \ c2 c4 c3)
+***Subgoal:*** forall c1 c4 \ imp (c2 c3 c4) (exists c1 c5 \ exists c0 c6 \ c2 c6 c5)
+***Subgoal:***
+ let c4 \
+  [suppose (c2 c3 c4)
+    [(exists c1 c5 \ exists c0 c6 \ c2 c6 c5), (exists c0 c5 \ c2 c5 c4)]]
+***Subgoal:***
+ suppose (c2 c3 c4)
+  [(exists c1 c5 \ exists c0 c6 \ c2 c6 c5), (exists c0 c5 \ c2 c5 c4)]
+***Subgoal:*** exists c1 c5 \ exists c0 c6 \ c2 c6 c5
+***Subgoal:*** exists c0 c5 \ c2 c5 c4
+***Success:*** exists c0 c5 \ c2 c5 c4
+***Success:*** exists c1 c5 \ exists c0 c6 \ c2 c6 c5
+***Success:***
+ suppose (c2 c3 c4)
+  [(exists c1 c5 \ exists c0 c6 \ c2 c6 c5), (exists c0 c5 \ c2 c5 c4)]
+***Success:***
+ let c4 \
+  [suppose (c2 c3 c4)
+    [(exists c1 c5 \ exists c0 c6 \ c2 c6 c5), (exists c0 c5 \ c2 c5 c4)]]
+***Success:*** forall c1 c4 \ imp (c2 c3 c4) (exists c1 c5 \ exists c0 c6 \ c2 c6 c5)
+***Success:***
+ let c3 \
+  [(forall c1 c4 \ imp (c2 c3 c4) (exists c1 c5 \ exists c0 c6 \ c2 c6 c5)),
+   (let c4 \
+     [suppose (c2 c3 c4)
+       [(exists c1 c5 \ exists c0 c6 \ c2 c6 c5), (exists c0 c5 \ c2 c5 c4)]])]
+***Subgoal:***
+ suppose (exists c1 c4 \ c2 c3 c4)
+  [(exists c1 c4 \ exists c0 c5 \ c2 c5 c4),
+   imp (forall c1 c4 \ imp (c2 c3 c4) (exists c1 c5 \ exists c0 c6 \ c2 c6 c5))
+    (exists c1 c4 \ exists c0 c5 \ c2 c5 c4),
+   (forall omega c4 \ imp (forall c1 c5 \ imp (c2 c3 c5) c4) c4),
+   eq (exists c1 c4 \ c2 c3 c4)
+    (forall omega c4 \ imp (forall c1 c5 \ imp (c2 c3 c5) c4) c4)]
+***Subgoal:*** exists c1 c4 \ exists c0 c5 \ c2 c5 c4
+***Subgoal:***
+ imp (forall c1 c4 \ imp (c2 c3 c4) (exists c1 c5 \ exists c0 c6 \ c2 c6 c5))
+  (exists c1 c4 \ exists c0 c5 \ c2 c5 c4)
+***Subgoal:*** forall omega c4 \ imp (forall c1 c5 \ imp (c2 c3 c5) c4) c4
+***Subgoal:***
+ eq (exists c1 c4 \ c2 c3 c4)
+  (forall omega c4 \ imp (forall c1 c5 \ imp (c2 c3 c5) c4) c4)
+***Success:***
+ eq (exists c1 c4 \ c2 c3 c4)
+  (forall omega c4 \ imp (forall c1 c5 \ imp (c2 c3 c5) c4) c4)
+***Success:*** forall omega c4 \ imp (forall c1 c5 \ imp (c2 c3 c5) c4) c4
+***Success:***
+ imp (forall c1 c4 \ imp (c2 c3 c4) (exists c1 c5 \ exists c0 c6 \ c2 c6 c5))
+  (exists c1 c4 \ exists c0 c5 \ c2 c5 c4)
+***Success:*** exists c1 c4 \ exists c0 c5 \ c2 c5 c4
+***Success:***
+ suppose (exists c1 c4 \ c2 c3 c4)
+  [(exists c1 c4 \ exists c0 c5 \ c2 c5 c4),
+   imp (forall c1 c4 \ imp (c2 c3 c4) (exists c1 c5 \ exists c0 c6 \ c2 c6 c5))
+    (exists c1 c4 \ exists c0 c5 \ c2 c5 c4),
+   (forall omega c4 \ imp (forall c1 c5 \ imp (c2 c3 c5) c4) c4),
+   eq (exists c1 c4 \ c2 c3 c4)
+    (forall omega c4 \ imp (forall c1 c5 \ imp (c2 c3 c5) c4) c4)]
+***Success:***
+ let c3 \
+  [suppose (exists c1 c4 \ c2 c3 c4)
+    [(exists c1 c4 \ exists c0 c5 \ c2 c5 c4),
+     imp (forall c1 c4 \ imp (c2 c3 c4) (exists c1 c5 \ exists c0 c6 \ c2 c6 c5))
+      (exists c1 c4 \ exists c0 c5 \ c2 c5 c4),
+     (forall omega c4 \ imp (forall c1 c5 \ imp (c2 c3 c5) c4) c4),
+     eq (exists c1 c4 \ c2 c3 c4)
+      (forall omega c4 \ imp (forall c1 c5 \ imp (c2 c3 c5) c4) c4)]]
+***Success:***
+ forall c0 c3 \ imp (exists c1 c4 \ c2 c3 c4) (exists c1 c4 \ exists c0 c5 \ c2 c5 c4)
+***Success:*** exists c1 c3 \ exists c0 c4 \ c2 c4 c3
+***Done:*** [(exists c0 c3 \ exists c1 c4 \ c2 c3 c4)] ⊢
+ exists c1 c3 \ exists c0 c4 \ c2 c4 c3  [by]
+ [forall-elim (let-elim (let-elim (forall-elim (let-elim implication_3_2_3_ii)))),
+  (forall-intro c3 \ let-elim (let-elim (forall-elim (let-elim imp-intro)))),
+  (let-intro c3 \
+    [let-elim
+      (forall-elim
+        (let-elim
+          (suppose-intro
+            [implication_3_2_3_ii, forall-elim tautology,
+             equality (exists c1 c4 \ c2 c3 c4)
+              (forall omega c4 \ imp (forall c1 c5 \ imp (c2 c3 c5) c4) c4), exists-def])))]),
+  (let-intro c3 \
+    [(forall-intro c4 \ let-elim imp-intro),
+     (let-intro c4 \ [suppose-intro [existential_3_7_4, existential_3_7_4]])]),
+  forall-elim tautology,
+  equality (exists c0 c3 \ exists c1 c4 \ c2 c3 c4)
+   (forall omega c3 \ imp (forall c0 c4 \ imp (exists c1 c5 \ c2 c4 c5) c3) c3),
+  exists-def]
+
+Success:
+
+Time: 1.088
+
+Constraints:
+
+
+State:
