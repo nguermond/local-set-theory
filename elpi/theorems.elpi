@@ -18,7 +18,6 @@ typeof (equiv P Q) omega.
 typeof tt omega.
 typeof (and P Q) omega.
 typeof (imp P Q) omega.
-typeof (forall A P) omega.
 typeof ff omega.
 typeof (exists A P) omega.
 typeof (neg P) omega.
@@ -28,7 +27,6 @@ proof (equiv-def) (eq (equiv P Q) (eq P Q)) _.
 proof (tt-def) (eq tt (eq star star)) _.
 proof (and-def) (eq (and P Q) (eq (opair P Q) (opair tt tt))) _.
 proof (imp-def) (eq (imp P Q) (equiv (and P Q) P)) _.
-proof (forall-def) (eq (forall A P) (eq (compr A P) (compr A (_\ tt)))) _.
 proof (ff-def) (eq ff (forall omega (x\ x))) _.
 proof (neg-def) (eq (neg P) (imp P ff)) _.
 proof (or-def) (eq (or P Q) (forall omega (r\ (imp (and (imp P r) (imp Q r)) r)))) _.
@@ -270,7 +268,7 @@ pf_conjunction_1 R :-
 	  [(suppose (and p q)
 		[r,p])]
 	  (R p q r))).
-%% lemma (conjunction_1) (imp (and P Q) R) L :- (mem (imp P R) L).
+lemma (conjunction_1) (imp (and P Q) R) L :- (mem (imp P R) L).
 
 pf_conjunction_2 R :-
 	(pi p q r\
@@ -278,7 +276,7 @@ pf_conjunction_2 R :-
 	  [(suppose (and p q)
 		[r,q])]
 	  (R p q r))).
-%% lemma (conjunction_2) (imp (and P Q) R) L :- (mem (imp Q R) L).
+lemma (conjunction_2) (imp (and P Q) R) L :- (mem (imp Q R) L).
 
 % 3.6 - Disjunction
 pf_disjunction_3_6_2_i R :-
@@ -339,11 +337,10 @@ lemma (existential_3_7_4) (exists A P) L :- (mem (P X) L).
 %% 	(imp (and (P x) (P y))
 %% 	 (eq x y))))))
 
-type tt tm.
-type epsilon ty -> (tm -> tm) -> tm.
-type epsilon-def ty -> (tm -> tm) -> pf.
+%% type epsilon ty -> (tm -> tm) -> tm.
+%% type epsilon-def ty -> (tm -> tm) -> pf.
 
-proof (epsilon-def omega P) (eq (epsilon omega P) (P tt)) _.
+%% proof (epsilon-def omega P) (eq (epsilon omega P) (P tt)) _.
 
 
 pf_comprehension_lemma_1 R :-
